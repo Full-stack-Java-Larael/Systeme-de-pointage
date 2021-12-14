@@ -6,9 +6,9 @@ import JDBC101.models.Users;
 public class MainApp {
 
     public static void main(String[] args) {
-        String jdbcUrl = "jdbc:postgresql://localhost:5432/name-dyal-databasedyalk";
+        String jdbcUrl = "jdbc:postgresql://localhost:5432/test101";
         String username = "postgres";
-        String password = "PASSWORD-dyalk";
+        String password = "5687";
 
         Users users = new Users();
         users.setEmail("someonesEmail@gmail.com");

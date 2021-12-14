@@ -23,7 +23,7 @@ public class userDao {
 
             if(users.getId_user() != null){
                 PreparedStatement statement = connection.prepareStatement
-                        ("update users set email= ?, first_name= ?, last_name= ? where id_user = ?;");
+                        ("update users set email= ? where id_user = ?;");
                 statement.setString(1,users.getEmail());
                 statement.setLong(2,users.getId_user());
                 statement.execute();
