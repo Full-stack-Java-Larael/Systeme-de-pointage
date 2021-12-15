@@ -1,19 +1,21 @@
 package JDBC101;
 
-import JDBC101.dao.userDao;
-import JDBC101.models.Users;
+import JDBC101.dao.jdbcDao;
+import JDBC101.models.User;
 
 public class MainApp {
 
     public static void main(String[] args) {
-        String jdbcUrl = "jdbc:postgresql://localhost:5432/name-dyal-databasedyalk";
+        String jdbcUrl = "jdbc:postgresql://localhost:5432/FA101";
         String username = "postgres";
-        String password = "PASSWORD-dyalk";
+        String password = "hello";
 
-        Users users = new Users();
-        users.setEmail("someonesEmail@gmail.com");
+        User user = new User();
+        user.setFirst_name("abdelaziz");
+        user.setLast_name("bardich");
+        user.setEmail("B.abdelaziz@gmail.com");
 
-        userDao userDao = new userDao(jdbcUrl, username, password);
-        userDao.saveUser(users);
+        jdbcDao userDao = new jdbcDao(jdbcUrl, username, password);
+        jdbcDao.saveUser(user);
     }
 }

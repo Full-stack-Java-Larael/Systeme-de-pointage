@@ -1,6 +1,6 @@
 package JDBC101.models;
 
-public class Users {
+public class User {
 
     private Long id_user;
     private String first_name;
@@ -11,7 +11,8 @@ public class Users {
     private String password;
     private boolean status;
 
-    public Users() {
+
+    public User() {
 
     }
 
