@@ -6,7 +6,7 @@ import JDBC101.model.User;
 import java.sql.*;
 import java.util.List;
 
-public class userDaoImp implements userDao {
+public class userDaoImp {
     private static String url;
     private static String username;
     private static String password;
@@ -18,7 +18,7 @@ public class userDaoImp implements userDao {
     }
 
 
-    public void saveUser(User user){
+    public static void saveUser(User user){
         try {
             Connection connection = DriverManager.getConnection(url, username, password);
 
@@ -70,9 +70,6 @@ public class userDaoImp implements userDao {
 
     }
 
-    @Override
-    public List<User> getAllUsersDetails() {
-        return null;
-    }
+
 }
 
