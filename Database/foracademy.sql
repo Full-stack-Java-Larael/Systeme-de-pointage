@@ -1,15 +1,10 @@
-# Création du base de donnés
-```sql
 -- DROP DATABASE IF EXISTS "foracademy";
 CREATE DATABASE "foracademy"
     WITH 
     OWNER = postgres
     ENCODING = 'UTF8'
     CONNECTION LIMIT = -1;
-```
-# Creation des tableaux
-- Users:
-```sql
+
 CREATE TABLE IF NOT EXISTS users
 (
     id_user INT NOT NULL,
@@ -21,9 +16,7 @@ CREATE TABLE IF NOT EXISTS users
     password TEXT,
 	CONSTRAINT id_user PRIMARY KEY (id_user)
 );
-```
-- Address:
-```sql
+
 CREATE TABLE IF NOT EXISTS address
 (
     id_adress INT NOT NULL,
@@ -34,9 +27,7 @@ CREATE TABLE IF NOT EXISTS address
 	CONSTRAINT id_adress PRIMARY KEY (id_adress),
     FOREIGN KEY (id_user) REFERENCES users(id_user)
 );
-```
-- Event:
-```sql
+
 CREATE TABLE IF NOT EXISTS event
 (
     id_event INT NOT NULL,
@@ -48,9 +39,7 @@ CREATE TABLE IF NOT EXISTS event
 	CONSTRAINT id_event PRIMARY KEY (id_event),
     FOREIGN KEY (id_user) REFERENCES users(id_user)    
 )
-```
-- Attendance:
-```sql
+
 CREATE TABLE IF NOT EXISTS attendance
 (
     id_attendance INT NOT NULL,
@@ -61,9 +50,7 @@ CREATE TABLE IF NOT EXISTS attendance
 	CONSTRAINT id_attendance PRIMARY KEY (id_attendance),
     FOREIGN KEY (id_user) REFERENCES users(id_user)
 )
-```
-- Role:
-```sql
+
 CREATE TABLE IF NOT EXISTS role
 (
     id_role INT NOT NULL,
@@ -73,17 +60,13 @@ CREATE TABLE IF NOT EXISTS role
 	CONSTRAINT id_role PRIMARY KEY (id_role),
     FOREIGN KEY (id_user) REFERENCES users(id_user)
 )
-```
-- Admin:
-```sql
+
 CREATE TABLE IF NOT EXISTS admin
 (
     id_admin INT NOT NULL,
 	CONSTRAINT id_admin PRIMARY KEY (id_admin)
 ) INHERITS (users);
-```
-- Promotion:
-```sql
+
 CREATE TABLE IF NOT EXISTS promotion(
     id_promotion INT NOT NULL,
     name VARCHAR(45),
@@ -92,17 +75,13 @@ CREATE TABLE IF NOT EXISTS promotion(
     end_date DATE,
 	CONSTRAINT id_promotion PRIMARY KEY (id_promotion)
 )
-```
-- Speciality:
-```sql
+
 CREATE TABLE IF NOT EXISTS speciality(
     id_speciality INT NOT NULL,
     name VARCHAR(45),
 	CONSTRAINT id_speciality PRIMARY KEY (id_speciality)
 )
-```
-- ClassRoom:
-```sql
+
 CREATE TABLE IF NOT EXISTS classRoom(
     id_classRoom INT NOT NULL,
     name VARCHAR(45),
@@ -113,34 +92,25 @@ CREATE TABLE IF NOT EXISTS classRoom(
 	CONSTRAINT id_classRoom PRIMARY KEY (id_classRoom),
     FOREIGN KEY (id_speciality) REFERENCES speciality(id_speciality)
 )
-```
-- Student:
-```sql
+
 CREATE TABLE IF NOT EXISTS student(
     id_student INT NOT NULL,
 	CONSTRAINT id_student PRIMARY KEY (id_student)
 ) INHERITS (users);
-```
-- Manager
-```sql
+
 CREATE TABLE IF NOT EXISTS manager (
     id_manager INT NOT NULL,
     enrty_date DATE,
 	CONSTRAINT id_manager PRIMARY KEY (id_manager)
 )INHERITS (users);
-```
-- Secretary
-```sql
+
 CREATE TABLE IF NOT EXISTS secretary (
     id_secretary INT NOT NULL,
     enrty_date DATE,
 	CONSTRAINT id_secretary PRIMARY KEY (id_secretary)
 ) INHERITS (users);
-```
-- Teacher
-```sql
+
 CREATE TABLE IF NOT EXISTS teacher (
     id_teacher INT NOT NULL,
 	CONSTRAINT id_teacher PRIMARY KEY (id_teacher)
 ) INHERITS (users);
-```
