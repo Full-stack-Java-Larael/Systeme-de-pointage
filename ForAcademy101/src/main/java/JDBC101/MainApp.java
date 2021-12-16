@@ -6,15 +6,10 @@ import JDBC101.models.User;
 public class MainApp {
 
     public static void main(String[] args) {
-<<<<<<< HEAD
-        String jdbcUrl = "jdbc:postgresql://localhost:5432/FA101";
-        String username = "postgres";
-        String password = "hello";
-=======
+
         String jdbcUrl = "jdbc:postgresql://localhost:5432/test101";
         String username = "postgres";
         String password = "5687";
->>>>>>> 20991ccc269b00f69763510e9eeb5bb49b2982d3
 
         User user = new User();
         user.setFirst_name("abdelaziz");
