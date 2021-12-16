@@ -7,7 +7,7 @@ CREATE DATABASE "foracademy"
 
 CREATE TABLE IF NOT EXISTS users
 (
-    id_user INT NOT NULL,
+    id_user SERIAL NOT NULL,
     first_name VARCHAR(45),
     last_name VARCHAR(45),
     address_id int ,
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS users
 
 CREATE TABLE IF NOT EXISTS address
 (
-    id_adress INT NOT NULL,
+    id_adress SERIAL NOT NULL,
     postal_code VARCHAR(45),
     city VARCHAR(45),
     street VARCHAR(150),
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS address
 
 CREATE TABLE IF NOT EXISTS event
 (
-    id_event INT NOT NULL,
+    id_event SERIAL NOT NULL,
     name VARCHAR(45),
     date DATE,
     description TEXT,
@@ -38,52 +38,52 @@ CREATE TABLE IF NOT EXISTS event
 	id_user INT,
 	CONSTRAINT id_event PRIMARY KEY (id_event),
     FOREIGN KEY (id_user) REFERENCES users(id_user)    
-)
+);
 
 CREATE TABLE IF NOT EXISTS attendance
 (
-    id_attendance INT NOT NULL,
+    id_attendance SERIAL NOT NULL,
     date DATE,
     arrival_hour TIME,
     departure_hour TIME,
 	id_user INT,
 	CONSTRAINT id_attendance PRIMARY KEY (id_attendance),
     FOREIGN KEY (id_user) REFERENCES users(id_user)
-)
+);
 
 CREATE TABLE IF NOT EXISTS role
 (
-    id_role INT NOT NULL,
+    id_role SERIAL NOT NULL,
     name VARCHAR(45),
     privileges JSON,
 	id_user INT,
 	CONSTRAINT id_role PRIMARY KEY (id_role),
     FOREIGN KEY (id_user) REFERENCES users(id_user)
-)
+);
 
 CREATE TABLE IF NOT EXISTS admin
 (
-    id_admin INT NOT NULL,
+    id_admin SERIAL NOT NULL,
 	CONSTRAINT id_admin PRIMARY KEY (id_admin)
 ) INHERITS (users);
 
 CREATE TABLE IF NOT EXISTS promotion(
-    id_promotion INT NOT NULL,
+    id_promotion SERIAL NOT NULL,
     name VARCHAR(45),
     year INT,
     start_date DATE,
     end_date DATE,
 	CONSTRAINT id_promotion PRIMARY KEY (id_promotion)
-)
+);
 
 CREATE TABLE IF NOT EXISTS speciality(
-    id_speciality INT NOT NULL,
+    id_speciality SERIAL NOT NULL,
     name VARCHAR(45),
 	CONSTRAINT id_speciality PRIMARY KEY (id_speciality)
-)
+);
 
 CREATE TABLE IF NOT EXISTS classRoom(
-    id_classRoom INT NOT NULL,
+    id_classRoom SERIAL NOT NULL,
     name VARCHAR(45),
     day_start_hour TIME,
     day_end_hour TIME,
@@ -91,26 +91,26 @@ CREATE TABLE IF NOT EXISTS classRoom(
 	id_speciality INT,
 	CONSTRAINT id_classRoom PRIMARY KEY (id_classRoom),
     FOREIGN KEY (id_speciality) REFERENCES speciality(id_speciality)
-)
+);
 
 CREATE TABLE IF NOT EXISTS student(
-    id_student INT NOT NULL,
+    id_student SERIAL NOT NULL,
 	CONSTRAINT id_student PRIMARY KEY (id_student)
 ) INHERITS (users);
 
 CREATE TABLE IF NOT EXISTS manager (
-    id_manager INT NOT NULL,
+    id_manager SERIAL NOT NULL,
     enrty_date DATE,
 	CONSTRAINT id_manager PRIMARY KEY (id_manager)
 )INHERITS (users);
 
 CREATE TABLE IF NOT EXISTS secretary (
-    id_secretary INT NOT NULL,
+    id_secretary SERIAL NOT NULL,
     enrty_date DATE,
 	CONSTRAINT id_secretary PRIMARY KEY (id_secretary)
 ) INHERITS (users);
 
 CREATE TABLE IF NOT EXISTS teacher (
-    id_teacher INT NOT NULL,
+    id_teacher SERIAL NOT NULL,
 	CONSTRAINT id_teacher PRIMARY KEY (id_teacher)
 ) INHERITS (users);
