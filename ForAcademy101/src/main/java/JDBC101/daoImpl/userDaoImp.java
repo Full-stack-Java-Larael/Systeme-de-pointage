@@ -2,6 +2,7 @@ package JDBC101.daoImpl;
 
 import JDBC101.JDBCfactory.ConnectionFactory;
 import JDBC101.dao.userDao;
+import JDBC101.handlingExceptions.DAOException;
 import JDBC101.model.User;
 
 import java.sql.*;
@@ -15,18 +16,19 @@ public class userDaoImp implements userDao{
     }
 
     @Override
-    public Optional<User> getUser(long id) {
+    public Optional<User> getUser(long id) throws DAOException {
         return Optional.empty();
     }
 
     @Override
-    public List<User> getAllUser() {
+    public List<User> getAllUser() throws DAOException {
         return null;
     }
 
-    public void saveUser(User user){
+    public void saveUser(User user) throws DAOException {
+
         try {
-         //   Connection connection = DriverManager.getConnection(url, username, password);
+            //   Connection connection = DriverManager.getConnection(url, username, password);
 
             Connection connection =   ConnectionFactory.getInstance().getConnection();
 
@@ -56,20 +58,21 @@ public class userDaoImp implements userDao{
             e.printStackTrace();
             System.out.println("unable to save the product");
         }
+        }
+
+
+    @Override
+    public void updateUser(User t, String[] params) throws DAOException{
+
     }
 
     @Override
-    public void updateUser(User t, String[] params) {
-
-    }
-
-    @Override
-    public void deleteUser(User t) {
+    public void deleteUser(User t) throws DAOException{
 
     }
 
 
-    public User getUserById(Long id_user){
+    public User getUserById(Long id_user) throws DAOException{
         try {
             Connection connection =   ConnectionFactory.getInstance().getConnection();
             PreparedStatement statement = connection.prepareStatement

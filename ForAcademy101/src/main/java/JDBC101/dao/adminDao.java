@@ -1,18 +1,19 @@
 package JDBC101.dao;
 
+import JDBC101.handlingExceptions.DAOException;
 import JDBC101.model.Admin;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface adminDao {
-    Optional<Admin> getAdmin(long id);
+    Optional<Admin> getAdmin(long id) throws DAOException;
 
-    List<Admin> getAllAdmin();
+    List<Admin> getAllAdmin() throws DAOException;
 
-    void saveAdmin(Admin t);
+    void saveAdmin(Admin t) throws DAOException;
 
-    void updateAdmin(Admin t, String[] params);
+    void updateAdmin(Admin t, String[] params) throws DAOException;
 
-    void deleteAdmin(Admin t);
+    void deleteAdmin(Admin t) throws DAOException;
 }

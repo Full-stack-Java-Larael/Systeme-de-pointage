@@ -1,18 +1,19 @@
 package JDBC101.dao;
 
+import JDBC101.handlingExceptions.DAOException;
 import JDBC101.model.Teacher;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface teacherDao {
-    Optional<Teacher> getTeacher(long id);
+    Optional<Teacher> getTeacher(long id) throws DAOException;
 
-    List<Teacher> getAllTeacher();
+    List<Teacher> getAllTeacher() throws DAOException;
 
-    void saveTeacher(Teacher t);
+    void saveTeacher(Teacher t) throws DAOException;
 
-    void updateTeacher(Teacher t, String[] params);
+    void updateTeacher(Teacher t, String[] params) throws DAOException;
 
-    void deleteTeacher(Teacher t);
+    void deleteTeacher(Teacher t) throws DAOException;
 }
