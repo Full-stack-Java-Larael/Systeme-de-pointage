@@ -25,7 +25,7 @@ public class userDaoImp implements userDao{
         return null;
     }
 
-    public void saveUser(User user) throws DAOException {
+    public static void saveUser(User user) throws DAOException {
 
         try {
             //   Connection connection = DriverManager.getConnection(url, username, password);
