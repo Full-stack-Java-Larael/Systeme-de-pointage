@@ -1,7 +1,9 @@
 package JDBC101.model;
 
 public class Manager {
-
+private Event event;
+private Teacher teacher;
+private Secretary secretary;
     private String entry_date;
 
     public String getEntry_date() {
@@ -15,6 +17,25 @@ public class Manager {
     public Manager(String entry_date) {
         this.entry_date = entry_date;
     }
+
+
+
+    public Event createEvent(){
+        return event;
+    }
+
+    public Event approveEvent(){
+        return event;
+    }
+
+    public Teacher createTeacher(){
+        return teacher;
+    }
+
+    public Secretary createSecretary(){
+        return secretary;
+    }
+
 
     @Override
     public String toString() {

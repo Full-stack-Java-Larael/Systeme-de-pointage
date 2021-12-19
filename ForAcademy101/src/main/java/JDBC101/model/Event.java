@@ -7,6 +7,7 @@ public class Event {
     private String date;
     private String description;
     private int status;
+    private Event event;
 
     public Event(int id_event, String name, String date, String description, int status) {
         this.id_event = id_event;
@@ -54,6 +55,22 @@ public class Event {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+
+    public Event createEvent(){
+        return event;
+    }
+
+    public Event updateEvent(){
+        return event;
+    }
+    public Event deleteEvent(){
+        return event;
+    }
+
+    public Event getEvent(){
+        return event;
     }
 
     @Override

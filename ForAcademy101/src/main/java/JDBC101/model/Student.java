@@ -1,6 +1,7 @@
 package JDBC101.model;
 
 public class Student {
+    private Event event;
 
     private Promotion promotion = new Promotion();
 
@@ -15,6 +16,12 @@ public class Student {
     public void setPromotion(Promotion promotion) {
         this.promotion = promotion;
     }
+
+    public Event suggestEvent(){
+        return event ;
+    };
+
+
 
     @Override
     public String toString() {

@@ -17,7 +17,6 @@ public class MainApp {
         user.setEmail("abaaa@gmail.com");
         user.setPassword("blabla");
         user.setPhone("+212657761515");
-
         userDaoImp.saveUser(user);
 
     }

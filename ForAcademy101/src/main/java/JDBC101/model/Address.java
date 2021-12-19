@@ -6,6 +6,7 @@ public class Address {
     private int postal_code;
     private String city;
     private String street;
+    private Address address;
 
     public Address(int id_address, int postal_code, String city, String street) {
         this.id_address = id_address;
@@ -44,6 +45,21 @@ public class Address {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+
+    public Address getAddress(){
+        return address;
+    }
+    public Address createAddress(){
+        return address;
+    }
+
+    public Address updateAddress(){
+        return address;
+    }
+    public Address deleteAddress(){
+        return address;
     }
 
     @Override

@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class Role {
 
+    private Role role;
     private int id_role;
     private String name;
     private String[] privileges;
@@ -37,6 +38,22 @@ public class Role {
     public void setPrivileges(String[] privileges) {
         this.privileges = privileges;
     }
+
+    public Role createRole(){
+        return role;
+    }
+
+    public Role getRole(){
+        return role;
+    }
+    public Role updateRole(){
+        return role;
+    }
+    public Role deleteRole(){
+        return role;
+    }
+
+
 
     @Override
     public String toString() {

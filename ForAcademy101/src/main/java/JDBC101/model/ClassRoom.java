@@ -7,6 +7,7 @@ public class ClassRoom {
     private String day_start_hour;
     private String day_end_hour;
     private Specialty specialty = new Specialty();
+    private ClassRoom classRoom;
 
     public ClassRoom(int id_class_room, String name, Specialty specialty) {
         this.id_class_room = id_class_room;
@@ -53,6 +54,29 @@ public class ClassRoom {
     public void setSpecialty(Specialty specialty) {
         this.specialty = specialty;
     }
+
+    public ClassRoom createClassRoom(){
+        return classRoom;
+    }
+    public ClassRoom updateClassRoom(){
+        return classRoom;
+    }
+
+    public ClassRoom deleteClassRoom(){
+        return classRoom;
+    }
+
+    public ClassRoom getClassRoom(){
+        return classRoom;
+    }
+
+    public int getNumberOfStudents(ClassRoom classRoom){
+        return 0;
+    }
+
+
+
+
 
     @Override
     public String toString() {

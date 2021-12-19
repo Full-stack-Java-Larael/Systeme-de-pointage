@@ -2,7 +2,10 @@ package JDBC101.model;
 
 public class Teacher {
 
+
     private Specialty speciality = new Specialty();
+
+    private Event event ;
 
     public Teacher(Specialty speciality) {
         this.speciality = speciality;
@@ -15,6 +18,10 @@ public class Teacher {
     public void setSpeciality(Specialty speciality) {
         this.speciality = speciality;
     }
+
+    public Event suggestEvent(){
+        return event ;
+    };
 
     @Override
     public String toString() {

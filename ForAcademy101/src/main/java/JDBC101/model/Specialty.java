@@ -4,6 +4,7 @@ public class Specialty {
 
     private int id_speciality;
     private String name;
+    private Specialty specialty;
 
     public Specialty(int id_speciality, String name) {
         this.id_speciality = id_speciality;
@@ -28,6 +29,18 @@ public class Specialty {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Specialty createSpeciality(){
+return specialty;
+    }
+
+    public Specialty updateSpeciality(){
+        return specialty;
+    }
+
+    public Specialty deleteSpeciality(){
+        return specialty;
     }
 
     @Override
