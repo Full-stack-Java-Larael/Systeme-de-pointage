@@ -7,6 +7,7 @@ public class Promotion {
     private int year;
     private String start_date;
     private String end_date;
+    private Promotion promotion;
 
     public Promotion(int id_promotion, String name) {
         this.id_promotion = id_promotion;
@@ -57,6 +58,36 @@ public class Promotion {
     public void setEnd_date(String end_date) {
         this.end_date = end_date;
     }
+
+    public int numberOfStudents(){
+        return 0;
+    }
+
+    public int numberOfBoys(){
+        return 0;
+    }
+
+    public int numberOfGirls(){
+        return 0;
+    }
+
+    public Promotion createPromotion(){
+        return promotion;
+    }
+
+    public Promotion updatePromotion(){
+        return promotion;
+    }
+
+    public Promotion deletePromotion(){
+        return promotion;
+    }
+
+    public Promotion getPromotion(){
+        return promotion;
+    }
+
+
 
     @Override
     public String toString() {

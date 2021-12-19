@@ -46,6 +46,9 @@ public class Attendance {
         this.departure_hour = departure_hour;
     }
 
+
+
+
     @Override
     public String toString() {
         return "Attendance{" +
