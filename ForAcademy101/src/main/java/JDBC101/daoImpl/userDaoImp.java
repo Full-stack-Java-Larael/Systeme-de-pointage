@@ -6,16 +6,25 @@ import JDBC101.model.User;
 
 import java.sql.*;
 import java.util.List;
+import java.util.Optional;
 
-public class userDaoImp {
-
-
+public class userDaoImp implements userDao{
 
 
     public userDaoImp() {
     }
 
-    public static void saveUser(User user){
+    @Override
+    public Optional<User> getUser(long id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public List<User> getAllUser() {
+        return null;
+    }
+
+    public void saveUser(User user){
         try {
          //   Connection connection = DriverManager.getConnection(url, username, password);
 
@@ -47,6 +56,16 @@ public class userDaoImp {
             e.printStackTrace();
             System.out.println("unable to save the product");
         }
+    }
+
+    @Override
+    public void updateUser(User t, String[] params) {
+
+    }
+
+    @Override
+    public void deleteUser(User t) {
+
     }
 
 

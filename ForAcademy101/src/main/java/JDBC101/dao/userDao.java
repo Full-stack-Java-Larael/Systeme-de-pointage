@@ -2,13 +2,21 @@ package JDBC101.dao;
 
 
 import JDBC101.model.User;
+import JDBC101.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface userDao {
 
-    public abstract void saveUser(User user);
-    public abstract User getUserById(Long id_user);
-    public abstract List<User> getAllUsersDetails();
+    Optional<User> getUser(long id);
+
+    List<User> getAllUser();
+
+    void saveUser(User t);
+
+    void updateUser(User t, String[] params);
+
+    void deleteUser(User t);
 
 }
