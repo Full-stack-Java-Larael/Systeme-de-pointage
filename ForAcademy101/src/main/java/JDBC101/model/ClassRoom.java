@@ -6,13 +6,13 @@ public class ClassRoom {
     private String name;
     private String day_start_hour;
     private String day_end_hour;
-    private Specialty specialty = new Specialty();
+    private Speciality speciality = new Speciality();
     private ClassRoom classRoom;
 
-    public ClassRoom(int id_class_room, String name, Specialty specialty) {
+    public ClassRoom(int id_class_room, String name, Speciality speciality) {
         this.id_class_room = id_class_room;
         this.name = name;
-        this.specialty = specialty;
+        this.speciality = speciality;
     }
 
     public int getId_class_room() {
@@ -47,12 +47,12 @@ public class ClassRoom {
         this.day_end_hour = day_end_hour;
     }
 
-    public Specialty getSpecialty() {
-        return specialty;
+    public Speciality getSpecialty() {
+        return speciality;
     }
 
-    public void setSpecialty(Specialty specialty) {
-        this.specialty = specialty;
+    public void setSpecialty(Speciality speciality) {
+        this.speciality = speciality;
     }
 
     public ClassRoom createClassRoom(){
@@ -85,7 +85,7 @@ public class ClassRoom {
                 ", name='" + name + '\'' +
                 ", day_start_hour='" + day_start_hour + '\'' +
                 ", day_end_hour='" + day_end_hour + '\'' +
-                ", specialty=" + specialty +
+                ", specialty=" + speciality +
                 '}';
     }
 }

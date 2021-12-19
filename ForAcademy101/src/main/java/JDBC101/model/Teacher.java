@@ -3,19 +3,19 @@ package JDBC101.model;
 public class Teacher {
 
 
-    private Specialty speciality = new Specialty();
+    private Speciality speciality = new Speciality();
 
     private Event event ;
 
-    public Teacher(Specialty speciality) {
+    public Teacher(Speciality speciality) {
         this.speciality = speciality;
     }
 
-    public Specialty getSpeciality() {
+    public Speciality getSpeciality() {
         return speciality;
     }
 
-    public void setSpeciality(Specialty speciality) {
+    public void setSpeciality(Speciality speciality) {
         this.speciality = speciality;
     }
 

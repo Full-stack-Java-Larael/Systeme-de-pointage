@@ -1,17 +1,17 @@
 package JDBC101.model;
 
-public class Specialty {
+public class Speciality {
 
     private int id_speciality;
     private String name;
-    private Specialty specialty;
+    private Speciality speciality;
 
-    public Specialty(int id_speciality, String name) {
+    public Speciality(int id_speciality, String name) {
         this.id_speciality = id_speciality;
         this.name = name;
     }
 
-    public Specialty() {
+    public Speciality() {
 
     }
 
@@ -31,16 +31,16 @@ public class Specialty {
         this.name = name;
     }
 
-    public Specialty createSpeciality(){
-return specialty;
+    public Speciality createSpeciality(){
+return speciality;
     }
 
-    public Specialty updateSpeciality(){
-        return specialty;
+    public Speciality updateSpeciality(){
+        return speciality;
     }
 
-    public Specialty deleteSpeciality(){
-        return specialty;
+    public Speciality deleteSpeciality(){
+        return speciality;
     }
 
     @Override

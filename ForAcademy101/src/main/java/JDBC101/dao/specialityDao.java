@@ -1,19 +1,19 @@
 package JDBC101.dao;
 
 import JDBC101.handlingExceptions.DAOException;
-import JDBC101.model.Specialty;
+import JDBC101.model.Speciality;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface specialityDao {
-    Optional<Specialty> getSpecialty(long id) throws DAOException;
+    Optional<Speciality> getSpecialty(long id) throws DAOException;
 
-    List<Specialty> getAllSpecialty() throws DAOException;
+    List<Speciality> getAllSpecialty() throws DAOException;
 
-    void saveSpecialty(Specialty t) throws DAOException;
+    void saveSpecialty(Speciality t) throws DAOException;
 
-    void updateSpecialty(Specialty t, String[] params) throws DAOException;
+    void updateSpecialty(Speciality t, String[] params) throws DAOException;
 
-    void deleteSpecialty(Specialty t) throws DAOException;
+    void deleteSpecialty(Speciality t) throws DAOException;
 }

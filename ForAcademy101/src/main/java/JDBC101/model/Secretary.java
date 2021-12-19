@@ -5,7 +5,7 @@ public class Secretary {
     private Event event;
     private Class classRoom;
 
-    private Specialty specialty;
+    private Speciality speciality;
 
     private String entry_date;
 
@@ -32,8 +32,8 @@ public class Secretary {
         return classRoom;
     }
 
-    public Specialty createSpeciality(){
-       return specialty;
+    public Speciality createSpeciality(){
+       return speciality;
     }
 
 
