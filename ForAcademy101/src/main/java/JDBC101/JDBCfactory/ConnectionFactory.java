@@ -10,9 +10,9 @@ import java.sql.SQLException;
 
     public class ConnectionFactory {
         String driverClassName = "org.postgresql.Driver";
-        String connectionUrl = "jdbc:postgresql://localhost:5432/foracademy";
+        String connectionUrl = "jdbc:postgresql://localhost:5432/FA101";
         String dbUser = "postgres";
-        String dbPwd = "postgres";
+        String dbPwd = "hello";
 
         private static ConnectionFactory connectionFactory = null;
 

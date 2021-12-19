@@ -62,7 +62,7 @@ public class userDaoImp implements userDao{
 
 
     @Override
-    public void updateUser(User t, String[] params) throws DAOException{
+    public void updateUser(String t, String[] params) throws DAOException{
 
     }
 
