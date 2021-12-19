@@ -1,5 +1,6 @@
 package JDBC101.daoImpl;
 
+import JDBC101.JDBCfactory.ConnectionFactory;
 import JDBC101.dao.userDao;
 import JDBC101.model.User;
 
@@ -7,34 +8,37 @@ import java.sql.*;
 import java.util.List;
 
 public class userDaoImp {
-    private static String url;
-    private static String username;
-    private static String password;
 
-    public userDaoImp(String url, String username, String password) {
-        this.url = url;
-        this.username = username;
-        this.password = password;
+
+
+
+    public userDaoImp() {
     }
-
 
     public static void saveUser(User user){
         try {
-            Connection connection = DriverManager.getConnection(url, username, password);
+         //   Connection connection = DriverManager.getConnection(url, username, password);
+
+            Connection connection =   ConnectionFactory.getInstance().getConnection();
 
             if(user.getId_user() != null){
                 PreparedStatement statement = connection.prepareStatement
                         ("update users set email= ?, first_name= ?, last_name= ? where id_user = ?;");
                 statement.setString(1, user.getEmail());
-                statement.setLong(2, user.getId_user());
+                statement.setLong(4, user.getId_user());
+                statement.setString(2, user.getFirst_name());
+                statement.setString(3, user.getLast_name());
                 statement.execute();
 
             }else{
                 PreparedStatement statement = connection.prepareStatement
-                        ("insert into users (email, first_name, last_name) values (?,?,?);");
-                statement.setString(1, user.getEmail());
-                statement.setString(2, user.getFirst_name());
-                statement.setString(3, user.getLast_name());
+                        ("insert into users ( first_name, last_name,address_id,phone,email,password) values (?,?,?,?,?,?);");
+                statement.setString(5, user.getEmail());
+                statement.setString(1, user.getFirst_name());
+                statement.setString(2, user.getLast_name());
+                statement.setString(4, user.getPhone());
+                statement.setString(6, user.getPassword());
+                statement.setLong(3, user.getAddress_id().getId_address());
 
                 statement.execute();
             }
@@ -48,7 +52,7 @@ public class userDaoImp {
 
     public User getUserById(Long id_user){
         try {
-            Connection connection = DriverManager.getConnection(url, username, password);
+            Connection connection =   ConnectionFactory.getInstance().getConnection();
             PreparedStatement statement = connection.prepareStatement
                     ("select * from users where id_user = ?;");
             statement.setLong(1,id_user);

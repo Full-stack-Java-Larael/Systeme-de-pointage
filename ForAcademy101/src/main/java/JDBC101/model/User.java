@@ -9,7 +9,14 @@ public class User {
     private String email;
     private String gender;
     private String password;
+    private Address address_id;
     private boolean status;
+
+    public Address getAddress_id() {
+        return address_id;
+    }
+
+
 
 
     public User() {
