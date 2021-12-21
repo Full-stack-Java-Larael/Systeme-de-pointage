@@ -2,20 +2,22 @@ package JDBC101.model;
 
 public class Address {
 
-    private int id_address;
+    private long id_address;
     private int postal_code;
     private String city;
     private String street;
     private Address address;
 
-    public Address(Role role) {
+
+    public Address( int postal_code, String city, String street) {
+
         this.id_address = id_address;
         this.postal_code = postal_code;
         this.city = city;
         this.street = street;
     }
 
-    public int getId_address() {
+    public long getId_address() {
         return id_address;
     }
 

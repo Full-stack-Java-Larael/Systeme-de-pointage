@@ -17,5 +17,5 @@ public interface addressDao {
 
     void updateAddress(Address t, String[] params) throws DAOException;
 
-    void deleteAddress(Address t) throws DAOException;
+    boolean  deleteAddress(Address t) throws DAOException;
 }

@@ -9,6 +9,10 @@ import java.util.Optional;
 
 public class eventDaoImp implements eventDao {
 
+    private static final String SQL_INSERT = "INSERT INTO Event (email, mot_de_passe, nom, date_inscription) VALUES (?, ?, ?, NOW())";
+
+
+
     @Override
     public Optional<Event> getEvent(long id) throws DAOException {
         return Optional.empty();

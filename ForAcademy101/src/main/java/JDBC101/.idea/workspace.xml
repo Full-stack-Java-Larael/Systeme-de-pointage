@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="11588c07-9006-4af5-bdd7-1415365fb1c7" name="Changes" comment="" />
+    <list default="true" id="11588c07-9006-4af5-bdd7-1415365fb1c7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/daoImpl/eventDaoImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/daoImpl/eventDaoImp.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,6 +65,7 @@
       <option name="presentableId" value="Default" />
       <updated>1639667987501</updated>
       <workItem from="1639667989411" duration="5975000" />
+      <workItem from="1639999464902" duration="22000" />
     </task>
     <servers />
   </component>
@@ -79,5 +82,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
