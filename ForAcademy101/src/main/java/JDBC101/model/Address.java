@@ -16,6 +16,9 @@ public class Address {
         this.city = city;
         this.street = street;
     }
+    public Address(){
+
+    }
 
     public long getId_address() {
         return id_address;
