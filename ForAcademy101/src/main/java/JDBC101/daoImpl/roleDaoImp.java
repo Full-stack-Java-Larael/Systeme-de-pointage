@@ -10,8 +10,8 @@ import java.util.Optional;
 public class roleDaoImp implements RoleDao {
 
     @Override
-    public Optional<Role> getRole(long id) throws DAOException {
-        return Optional.empty();
+    public Role getRole(long id) throws DAOException {
+        return null;
     }
 
     @Override

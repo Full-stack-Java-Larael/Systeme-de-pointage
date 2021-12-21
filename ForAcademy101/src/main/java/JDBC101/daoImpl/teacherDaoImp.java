@@ -4,7 +4,6 @@ import JDBC101.JDBCfactory.ConnectionFactory;
 import JDBC101.dao.teacherDao;
 import JDBC101.handlingExceptions.DAOException;
 import JDBC101.model.Teacher;
-import JDBC101.model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,8 +16,30 @@ import java.util.Optional;
 public class teacherDaoImp implements teacherDao {
 
     @Override
-    public Optional<Teacher> getTeacher(long id) throws DAOException {
-        return Optional.empty();
+    public Teacher getTeacher(long id) throws DAOException {
+        try {
+            Connection connection = ConnectionFactory.getInstance().getConnection();
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM teacher");
+            ResultSet resultSet = statement.executeQuery();
+            // new teacher model
+            Teacher teacher = new Teacher();
+            // set teacher data
+            teacher.setId_user(resultSet.getLong("id_user"));
+            teacher.setFirst_name(resultSet.getString("first_name"));
+            teacher.setLast_name(resultSet.getString("last_name"));
+            teacher.setAddress(new addressDaoImp().getAddress(resultSet.getLong("id_user"))); // fill address model usin teacher id
+            teacher.setRole(new roleDaoImp().getRole(resultSet.getLong("id_user"))); // fill role model using teacher id
+            teacher.setPhone(resultSet.getString("phone"));
+            teacher.setEmail(resultSet.getString("email"));
+            teacher.setGender(resultSet.getString("gender"));
+            teacher.setPassword(resultSet.getString("password"));
+            teacher.setStatus(resultSet.getBoolean("status"));
+            return teacher;
+        }catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("unable to get All teachers!");
+        }
+        return null;
     }
 
     @Override
@@ -30,21 +51,24 @@ public class teacherDaoImp implements teacherDao {
             List<Teacher> teachersList = new ArrayList<Teacher>();
             while (resultSet.next()){
                 Teacher teacher = new Teacher();
+                teacher.setId_user(resultSet.getLong("id_user"));
                 teacher.setFirst_name(resultSet.getString("first_name"));
                 teacher.setLast_name(resultSet.getString("last_name"));
-                teacher.setAddress(resultSet.getObject("address", Address));
-                teacher.setRole();
-                teacher.setPhone();
-                teacher.setEmail();
-                teacher.setGender();
-                teacher.setPassword();
-                teacher.setStatus();
+                teacher.setAddress(new addressDaoImp().getAddress(resultSet.getLong("id_user")));
+                teacher.setRole(new roleDaoImp().getRole(resultSet.getLong("id_user")));
+                teacher.setPhone(resultSet.getString("phone"));
+                teacher.setEmail(resultSet.getString("email"));
+                teacher.setGender(resultSet.getString("gender"));
+                teacher.setPassword(resultSet.getString("password"));
+                teacher.setStatus(resultSet.getBoolean("status"));
                 teachersList.add(teacher);
             }
+            return  teachersList;
         }catch (SQLException e){
             e.printStackTrace();
             System.out.println("unable to get All teachers!");
         }
+        return null;
     }
 
     @Override

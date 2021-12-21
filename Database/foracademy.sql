@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS classRoom(
 CREATE TABLE IF NOT EXISTS student(
     id_student SERIAL NOT NULL,
     id_promotion INT,
-    FOREIGN (id_promotion) REFERENCES promotion(id_promotion),
+    FOREIGN KEY (id_promotion) REFERENCES promotion(id_promotion),
 	CONSTRAINT id_student PRIMARY KEY (id_student)
 ) INHERITS (users);
 

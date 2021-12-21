@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface RoleDao {
-    Optional<Role> getRole(long id) throws DAOException;
+    Role getRole(long id) throws DAOException;
 
     List<Role> getAllRole() throws DAOException;
 
