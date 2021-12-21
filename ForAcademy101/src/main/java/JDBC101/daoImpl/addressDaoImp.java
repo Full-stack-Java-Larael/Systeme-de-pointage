@@ -21,7 +21,7 @@ public class addressDaoImp implements addressDao {
 
 
 
-    private static final String INSERT_ADDRESS_SQL = "INSERT INTO address (postal_code, city, street) VALUES (?, ?, ?);";
+    private static final String INSERT_ADDRESS_SQL = "INSERT INTO address (postal_code, city, street,id_user ) VALUES (?, ?,?,?);";
 
 
     private static final String SELECT_ADDRESS_BY_ID = "select * from address where id_user =?";
@@ -103,12 +103,14 @@ public class addressDaoImp implements addressDao {
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-           // printSQLException(e);
+           e.printStackTrace();
         }
 
 
 
     }
+
+
 
     @Override
     public void updateAddress(Address t) throws DAOException {
