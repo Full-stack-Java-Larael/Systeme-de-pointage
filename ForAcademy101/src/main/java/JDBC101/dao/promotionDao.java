@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface promotionDao {
-    Optional<Promotion> getPromotion(long id) throws DAOException;
+    Promotion getPromotion(long id) throws DAOException;
 
     List<Promotion> getAllPromotion() throws DAOException;
 
     void savePromotion(Promotion t) throws DAOException;
 
-    void updatePromotion(Promotion t, String[] params) throws DAOException;
+    void updatePromotion(Promotion t) throws DAOException;
 
-    void deletePromotion(Promotion t) throws DAOException;
+    boolean deletePromotion(Promotion t) throws DAOException;
 }

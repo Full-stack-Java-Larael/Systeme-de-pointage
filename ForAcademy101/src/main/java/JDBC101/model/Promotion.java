@@ -1,5 +1,7 @@
 package JDBC101.model;
 
+import java.util.Date;
+
 public class Promotion {
 
     private int id_promotion;
@@ -9,9 +11,13 @@ public class Promotion {
     private String end_date;
     private Promotion promotion;
 
-    public Promotion(int id_promotion, String name) {
-        this.id_promotion = id_promotion;
+    public Promotion( String name , int year , String start_date , String end_date) {
+
+
         this.name = name;
+        this.year = year;
+        this.start_date = start_date;
+        this.end_date = end_date;
     }
 
 
