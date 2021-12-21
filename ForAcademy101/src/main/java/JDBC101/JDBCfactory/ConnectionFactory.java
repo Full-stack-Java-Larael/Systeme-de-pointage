@@ -12,7 +12,7 @@ import java.sql.SQLException;
         String driverClassName = "org.postgresql.Driver";
         String connectionUrl = "jdbc:postgresql://localhost:5432/foracademy";
         String dbUser = "postgres";
-        String dbPwd = "5687";
+        String dbPwd = "hello";
 
         private static ConnectionFactory connectionFactory = null;
 

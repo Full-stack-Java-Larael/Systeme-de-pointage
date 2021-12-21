@@ -1,20 +1,30 @@
 package JDBC101.model;
 
+import java.sql.Date;
+import java.sql.Time;
+
 public class Event {
 
     private int id_event;
     private String name;
-    private String date;
+    private Date date;
     private String description;
     private int status;
     private Event event;
 
-    public Event(int id_event, String name, String date, String description, int status) {
+    public Event(int id_event, String name, Date date, String description, int status) {
         this.id_event = id_event;
         this.name = name;
         this.date = date;
         this.description = description;
         this.status = status;
+    }
+
+    public Event() {
+
+    }
+
+    public Event(int id, String name, Time date, String description, int status) {
     }
 
     public int getId_event() {
@@ -33,12 +43,12 @@ public class Event {
         this.name = name;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
     public void setDate(String date) {
-        this.date = date;
+        this.date = Date.valueOf(date);
     }
 
     public String getDescription() {
@@ -83,4 +93,6 @@ public class Event {
                 ", status=" + status +
                 '}';
     }
+
+
 }

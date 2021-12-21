@@ -6,6 +6,8 @@ import JDBC101.model.Speciality;
 
 import java.sql.Time;
 
+import java.util.Date;
+
 
 public class MainApp {
 
