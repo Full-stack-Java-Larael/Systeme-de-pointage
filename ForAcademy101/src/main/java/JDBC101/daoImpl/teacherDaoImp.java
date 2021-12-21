@@ -15,11 +15,14 @@ import java.util.Optional;
 
 public class teacherDaoImp implements teacherDao {
 
+
+
     @Override
     public Teacher getTeacher(long id) throws DAOException {
         try {
             Connection connection = ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM teacher");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM teacher WHERE id_user = ?");
+            statement.setLong(1,id);
             ResultSet resultSet = statement.executeQuery();
             // new teacher model
             Teacher teacher = new Teacher();
@@ -81,13 +84,13 @@ public class teacherDaoImp implements teacherDao {
             statement.setString(1, teacher.getEmail());
             statement.setString(2, teacher.getFirst_name());
             statement.setString(3, teacher.getLast_name());
-            statement.setLong(4, teacher.getAddress().getId_address());
-            statement.setLong(5,teacher.getRole().getId_role());
             statement.setString(6,teacher.getPhone());
             statement.setString(7,teacher.getGender());
             statement.setString(8,teacher.getPassword());
             statement.setBoolean(9,teacher.isStatus()); // is active
-            statement.execute();
+            ResultSet resultSet = statement.executeQuery();
+            new addressDaoImp().saveAddress(teacher.getAddress());
+            new roleDaoImp().saveRole(teacher.getRole());
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("unable to save the Teacher");
