@@ -12,9 +12,10 @@ CREATE TABLE IF NOT EXISTS users
     last_name VARCHAR(45),
     address_id int ,
     phone VARCHAR(14),
+    gender VARCHAR(45),
     email VARCHAR(145) UNIQUE,
     password TEXT,
-    status INT,
+    status BOOLEAN,
 	CONSTRAINT id_user PRIMARY KEY (id_user)
 );
 

@@ -80,15 +80,16 @@ public class teacherDaoImp implements teacherDao {
             //   Connection connection = DriverManager.getConnection(url, teachername, password);
             Connection connection =   ConnectionFactory.getInstance().getConnection();
             PreparedStatement statement = connection.prepareStatement
-                    ("INSERT INTO teacher (email,first_name,last_name,address_id,role,phone,gender,password,status) VALUES (?,?,?,?,?,?,?,?,?)");
+                    ("INSERT INTO teacher (email,first_name,last_name,gender,phone,password,status) VALUES (?,?,?,?,?,?,?)");
             statement.setString(1, teacher.getEmail());
             statement.setString(2, teacher.getFirst_name());
             statement.setString(3, teacher.getLast_name());
-            statement.setString(6,teacher.getPhone());
-            statement.setString(7,teacher.getGender());
-            statement.setString(8,teacher.getPassword());
-            statement.setBoolean(9,teacher.isStatus()); // is active
-            ResultSet resultSet = statement.executeQuery();
+            statement.setString(4,teacher.getGender());
+            statement.setString(5,teacher.getPhone());
+            statement.setString(6,teacher.getPassword());
+            statement.setBoolean(7,teacher.isStatus()); // is active
+            statement.setLong(8,teacher.getSpeciality().getId_speciality());
+            boolean resultSet = statement.execute();
             new addressDaoImp().saveAddress(teacher.getAddress());
             new roleDaoImp().saveRole(teacher.getRole());
         } catch (SQLException e) {

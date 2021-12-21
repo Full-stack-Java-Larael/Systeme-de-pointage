@@ -14,8 +14,7 @@ import java.util.List;
 
 public class eventDaoImp implements eventDao {
 
-    private static final String INSERT_Event_SQL = "INSERT INTO Event (name, date, description, status) VALUES " +
-            " (?, ?,?,?);";
+    private static final String INSERT_Event_SQL = "INSERT INTO Event (name, date, description, status) VALUES (?, ?,?,?);";
 
     private static final String SELECT_Event_BY_ID = "select * from Event where id_event =?";
     private static final String SELECT_ALL_Event = "select * from Event";

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface attendanceDao {
-    Optional<Attendance> getAttendance(long id) throws DAOException;
+    Attendance getAttendance(long id) throws DAOException;
 
     List<Attendance> getAllAttendances() throws DAOException;
 
