@@ -70,6 +70,7 @@ public class specialityDaoImp implements specialityDao {
 
                 Specialities.add( new Speciality( id, name));
             }
+            return Specialities;
         } catch (SQLException e) {
             //   printSQLException(e);
         }

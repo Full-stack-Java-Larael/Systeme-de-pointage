@@ -44,16 +44,17 @@ public class classRoomDaoImp implements classRoomDao {
     public ClassRoom saveClassRoom(ClassRoom classRoom) throws DAOException {
         try {
             Connection connection = ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement(SAVE_CLASS_ROOM);
+            PreparedStatement statement = connection.prepareStatement(SAVE_CLASS_ROOM,Statement.RETURN_GENERATED_KEYS);
             statement.setString(1,classRoom.getName());
             statement.setTime(2,classRoom.getDay_start_hour());
             statement.setTime(3,classRoom.getDay_end_hour());
             statement.setLong(4,classRoom.getSpecialty().getId_speciality());
-            statement.executeUpdate();
+statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
-            System.out.println(resultSet.getFetchSize());
+            System.out.println(resultSet);
+
             while (resultSet.next()){
-                System.out.println("id: "+resultSet.getInt(1));
+                System.out.println(resultSet.getLong(1));
             }
             return classRoom;
         }catch (SQLException e){
