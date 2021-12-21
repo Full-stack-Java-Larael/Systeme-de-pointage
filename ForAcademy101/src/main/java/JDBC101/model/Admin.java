@@ -1,6 +1,6 @@
 package JDBC101.model;
 
-public class Admin {
+public class Admin extends User{
 private Attendance attendance;
 
     public Admin() {

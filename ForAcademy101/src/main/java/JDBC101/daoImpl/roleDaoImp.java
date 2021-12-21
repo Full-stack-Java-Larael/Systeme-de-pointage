@@ -14,8 +14,7 @@ import java.util.List;
 
 public class roleDaoImp implements RoleDao {
 
-    private static final String INSERT_role_SQL = "INSERT INTO Role" + "  (name, privileges) VALUES " +
-            " (?, ?);";
+    private static final String INSERT_role_SQL = "INSERT INTO Role (name, privileges) VALUES (?, ?);";
 
     private static final String SELECT_role_BY_ID = "select * from Role where id_role =?";
     private static final String SELECT_ALL_role = "select * from Role";

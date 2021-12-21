@@ -20,8 +20,9 @@ import JDBC101.model.User;
 public class addressDaoImp implements addressDao {
 
 
-    private static final String INSERT_ADDRESS_SQL = "INSERT INTO address" + "  (postal_code, city, street,id_user) VALUES " +
-            " (?, ?, ?,?);";
+
+    private static final String INSERT_ADDRESS_SQL = "INSERT INTO address (postal_code, city, street) VALUES (?, ?, ?);";
+
 
     private static final String SELECT_ADDRESS_BY_ID = "select * from address where id_user =?";
     private static final String SELECT_ALL_ADDRESS = "select * from address";
@@ -110,7 +111,7 @@ public class addressDaoImp implements addressDao {
     }
 
     @Override
-    public void updateAddress(Address t, String[] params) throws DAOException {
+    public void updateAddress(Address t) throws DAOException {
         try (Connection connection = ConnectionFactory.getInstance().getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_ADDRESS_SQL);) {
             statement.setInt(1, t.getPostal_code());
             statement.setString(2, t.getCity());
