@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import JDBC101.JDBCfactory.ConnectionFactory;
+import JDBC101.model.User;
 
 public class addressDaoImp implements addressDao {
 
@@ -61,7 +62,7 @@ public class addressDaoImp implements addressDao {
     public List<Address> getAllAddress() throws DAOException  {
 
 
-        List < Address > adress = new ArrayList<Address  >();
+        List <Address> addressList = new ArrayList<Address>();
 
         try (Connection connection = ConnectionFactory.getInstance().getConnection();
 
@@ -73,16 +74,20 @@ public class addressDaoImp implements addressDao {
 
 
             while (rs.next()) {
-                int id = rs.getInt("id");
-                int postal_code = rs.getInt("postal_code");
-                String city = rs.getString("city");
-                String street = rs.getString("street");
-                adress.add( new Address( postal_code, city, street));
+
+                Address address = new Address();
+
+               address.setId_address(rs.getInt("id"));
+               address.setPostal_code(rs.getInt("postal_code"));
+               address.setCity(rs.getString("city"));
+               address.setStreet(rs.getString("street"));
+
+                addressList.add(address);
             }
         } catch (SQLException e) {
          //   printSQLException(e);
         }
-        return adress;
+        return addressList;
 
     }
 
