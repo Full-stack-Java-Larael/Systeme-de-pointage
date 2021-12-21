@@ -4,16 +4,16 @@ import JDBC101.handlingExceptions.DAOException;
 import JDBC101.model.Speciality;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface specialityDao {
-    Optional<Speciality> getSpecialty(long id) throws DAOException;
+    Speciality getSpeciality(long id) throws DAOException;
 
-    List<Speciality> getAllSpecialty() throws DAOException;
+    List<Speciality> getAllSpeciality() throws DAOException;
 
-    void saveSpecialty(Speciality t) throws DAOException;
+    void saveSpeciality(Speciality t) throws DAOException;
 
-    void updateSpecialty(Speciality t, String[] params) throws DAOException;
+    void updateSpeciality(Speciality t, String[] params) throws DAOException;
 
-    void deleteSpecialty(Speciality t) throws DAOException;
+    boolean deleteSpeciality(Speciality t) throws DAOException;
+
 }
