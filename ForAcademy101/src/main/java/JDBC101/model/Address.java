@@ -8,7 +8,7 @@ public class Address {
     private String street;
     private Address address;
 
-    public Address(int id_address, int postal_code, String city, String street) {
+    public Address(Role role) {
         this.id_address = id_address;
         this.postal_code = postal_code;
         this.city = city;

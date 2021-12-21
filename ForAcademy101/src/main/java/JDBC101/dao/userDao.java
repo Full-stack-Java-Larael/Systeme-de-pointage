@@ -18,7 +18,7 @@ public interface userDao{
 
     }
 
-    void updateUser(String t, String[] params) throws DAOException;
+    void updateUser(User user) throws DAOException;
 
     void deleteUser(User t) throws DAOException;
 }

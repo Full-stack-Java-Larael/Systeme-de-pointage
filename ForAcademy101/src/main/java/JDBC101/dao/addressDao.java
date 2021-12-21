@@ -3,12 +3,13 @@ package JDBC101.dao;
 import JDBC101.handlingExceptions.DAOException;
 import JDBC101.model.Address;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 public interface addressDao {
 
-    Optional<Address> getAddress(long id) throws DAOException;
+    Optional<Address> getAddress(long id) throws DAOException, SQLException;
 
     List<Address> getAllAddress() throws DAOException;
 
