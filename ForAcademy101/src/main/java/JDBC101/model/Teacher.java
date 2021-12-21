@@ -1,14 +1,14 @@
 package JDBC101.model;
 
-public class Teacher {
+public class Teacher extends User {
 
 
     private Speciality speciality = new Speciality();
 
     private Event event ;
 
-    public Teacher(Speciality speciality) {
-        this.speciality = speciality;
+    public Teacher() {
+        this.speciality = null;
     }
 
     public Speciality getSpeciality() {

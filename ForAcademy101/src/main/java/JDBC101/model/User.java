@@ -9,16 +9,28 @@ public class User {
     private String email;
     private String gender;
     private String password;
-    private Address address_id;
+    private Address address;
     private boolean status;
+    private Role role;
 
-    public Address getAddress_id() {
+    public Address getAddress() {
 
-        return address_id;
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Role getRole() {
+        return role;
     }
 
 
 
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     public User() {
 

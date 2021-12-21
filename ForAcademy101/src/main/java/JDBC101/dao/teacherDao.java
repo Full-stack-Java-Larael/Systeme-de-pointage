@@ -13,7 +13,7 @@ public interface teacherDao {
 
     void saveTeacher(Teacher t) throws DAOException;
 
-    void updateTeacher(Teacher t, String[] params) throws DAOException;
+    void updateTeacher(Teacher t) throws DAOException;
 
     void deleteTeacher(Teacher t) throws DAOException;
 }

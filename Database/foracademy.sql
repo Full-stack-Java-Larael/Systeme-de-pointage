@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS users
     phone VARCHAR(14),
     email VARCHAR(145) UNIQUE,
     password TEXT,
+    status INT,
 	CONSTRAINT id_user PRIMARY KEY (id_user)
 );
 
@@ -95,6 +96,8 @@ CREATE TABLE IF NOT EXISTS classRoom(
 
 CREATE TABLE IF NOT EXISTS student(
     id_student SERIAL NOT NULL,
+    id_promotion INT,
+    FOREIGN (id_promotion) REFERENCES promotion(id_promotion),
 	CONSTRAINT id_student PRIMARY KEY (id_student)
 ) INHERITS (users);
 
@@ -112,5 +115,7 @@ CREATE TABLE IF NOT EXISTS secretary (
 
 CREATE TABLE IF NOT EXISTS teacher (
     id_teacher SERIAL NOT NULL,
+    id_speciality INT,
+    FOREIGN KEY (id_speciality) REFERENCES speciality(id_speciality),
 	CONSTRAINT id_teacher PRIMARY KEY (id_teacher)
 ) INHERITS (users);

@@ -6,6 +6,7 @@ import JDBC101.handlingExceptions.DAOException;
 import JDBC101.model.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,14 +26,14 @@ public class userDaoImp implements userDao{
             ResultSet resultSet = statement.executeQuery();
 
             User user = new User();
+            Optional<User> opt = Optional.ofNullable(user);
             while(resultSet.next()){
                 user.setId_user(resultSet.getLong("id_user"));
                 user.setFirst_name(resultSet.getString("first_name"));
                 user.setLast_name(resultSet.getString("last_name"));
                 user.setEmail(resultSet.getString("email"));
             }
-            return user;
-
+            return opt;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -41,7 +42,24 @@ public class userDaoImp implements userDao{
 
     @Override
     public List<User> getAllUser() throws DAOException {
-        return null;
+        try {
+            Connection connection = ConnectionFactory.getInstance().getConnection();
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users");
+            ResultSet resultSet = statement.executeQuery();
+            List<User> usersList = new ArrayList<User>();
+            while(resultSet.next()){
+                User user = new User();
+                user.setId_user(resultSet.getLong("id_user"));
+                user.setFirst_name(resultSet.getString("first_name"));
+                user.setLast_name(resultSet.getString("last_name"));
+                user.setEmail(resultSet.getString("email"));
+                usersList.add(user);
+            }
+            return  usersList;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static void saveUser(User user) throws DAOException {
@@ -50,11 +68,16 @@ public class userDaoImp implements userDao{
             //   Connection connection = DriverManager.getConnection(url, username, password);
             Connection connection =   ConnectionFactory.getInstance().getConnection();
             PreparedStatement statement = connection.prepareStatement
-                    ("update users set email= ?, first_name= ?, last_name= ? where id_user = ?;");
+                    ("INSERT INTO users (email,first_name,last_name,address_id,role,phone,gender,password,status) VALUES (?,?,?,?,?,?,?,?,?)");
             statement.setString(1, user.getEmail());
-            statement.setLong(4, user.getId_user());
             statement.setString(2, user.getFirst_name());
             statement.setString(3, user.getLast_name());
+            statement.setLong(4, user.getAddress().getId_address());
+            statement.setLong(5,user.getRole().getId_role());
+            statement.setString(6,user.getPhone());
+            statement.setString(7,user.getGender());
+            statement.setString(8,user.getPassword());
+            statement.setBoolean(9,user.isStatus()); // is active
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -68,10 +91,10 @@ public class userDaoImp implements userDao{
         try {
             Connection connection =   ConnectionFactory.getInstance().getConnection();
             PreparedStatement statement = connection.prepareStatement
-                    ("UPDATE users  first_name = ?, last_name = ?,address_id = ?,phone = ?,email = ?,password = ?) WHERE id_user = ?");
+                    ("UPDATE users  first_name = ?, last_name = ?,address_id = ?,phone = ?,email = ?,password = ?,role = ) WHERE id_user = ?");
             statement.setString(1, user.getFirst_name());
             statement.setString(2, user.getLast_name());
-            statement.setLong(3, user.getAddress_id().getId_address());
+            statement.setLong(3, user.getAddress().getId_address());
             statement.setString(4, user.getPhone());
             statement.setString(5, user.getEmail());
             statement.setString(6, user.getPassword());
