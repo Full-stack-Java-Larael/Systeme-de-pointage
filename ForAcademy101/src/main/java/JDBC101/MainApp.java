@@ -1,16 +1,10 @@
 package JDBC101;
 
-import JDBC101.JDBCfactory.ConnectionFactory;
 import JDBC101.daoImpl.teacherDaoImp;
-import JDBC101.daoImpl.userDaoImp;
 import JDBC101.model.Role;
 import JDBC101.model.Speciality;
 import JDBC101.model.Teacher;
-import JDBC101.model.Address;
-import JDBC101.model.User;
-import JDBC101.serviceImpl.*;
 
-import java.sql.Array;
 
 public class MainApp {
 

@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS users
     id_user SERIAL NOT NULL,
     first_name VARCHAR(45),
     last_name VARCHAR(45),
-    address_id int ,
+    -- address_id int ,
     phone VARCHAR(14),
     gender VARCHAR(45),
     email VARCHAR(145) UNIQUE,
