@@ -10,5 +10,5 @@ public interface specialityService {
     public Optional<Speciality> fetchSpecialityById(int id_Speciality);
     public void deleteSpecialityById(Speciality id_Speciality);
     public void updateSpecialityPasswordById(String newPassword, String[] id_Speciality);
-    public List<Speciality> getAllSpecialitys();
+    public List<Speciality> getAllSpecialities();
 }
