@@ -7,7 +7,7 @@ public class Role {
     private Role role;
     private int id_role;
     private String name;
-    private String[] privileges;
+    private String privileges;
 
     public Role(int id_role, String name, String privileges) {
         this.id_role = id_role;
@@ -35,7 +35,7 @@ public class Role {
         return privileges;
     }
 
-    public void setPrivileges(String[] privileges) {
+    public void setPrivileges(String privileges) {
         this.privileges = privileges;
     }
 
@@ -60,7 +60,7 @@ public class Role {
         return "Role{" +
                 "id_role=" + id_role +
                 ", name='" + name + '\'' +
-                ", privileges=" + Arrays.toString(privileges) +
+                ", privileges=" + privileges +
                 '}';
     }
 }

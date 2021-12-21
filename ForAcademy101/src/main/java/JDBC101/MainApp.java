@@ -2,7 +2,9 @@ package JDBC101;
 
 import JDBC101.JDBCfactory.ConnectionFactory;
 import JDBC101.daoImpl.userDaoImp;
+import JDBC101.model.Address;
 import JDBC101.model.User;
+import JDBC101.serviceImpl.*;
 
 public class MainApp {
 
@@ -11,16 +13,11 @@ public class MainApp {
 
 
 
-        User user = new User();
-        user.setFirst_name("ZZZZZZ");
-        user.setLast_name("zzzzz");
-        user.setEmail("abaaa@gmail.com");
-        user.setPassword("blabla");
-        user.setPhone("+212");
 
-        user.setPhone("+212657761515");
+        Address address = new Address(2000,"Casablanca","rue ait baha");
 
-
+AddressServiceImpl newadress = new AddressServiceImpl();
+        newadress.addAddress(address);
     }
 
 }

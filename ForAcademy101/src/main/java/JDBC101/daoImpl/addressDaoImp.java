@@ -20,8 +20,8 @@ import JDBC101.model.User;
 public class addressDaoImp implements addressDao {
 
 
-    private static final String INSERT_ADDRESS_SQL = "INSERT INTO address" + "  (postal_code, city, street) VALUES " +
-            " (?, ?, ?);";
+    private static final String INSERT_ADDRESS_SQL = "INSERT INTO address" + "  (postal_code, city, street,id_user) VALUES " +
+            " (?, ?, ?,?);";
 
     private static final String SELECT_ADDRESS_BY_ID = "select * from address where id_user =?";
     private static final String SELECT_ALL_ADDRESS = "select * from address";
@@ -98,6 +98,7 @@ public class addressDaoImp implements addressDao {
             preparedStatement.setInt(1, t.getPostal_code());
             preparedStatement.setString(2,t.getCity() );
             preparedStatement.setString(3,t.getStreet() );
+            preparedStatement.setInt(4, 1);
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
