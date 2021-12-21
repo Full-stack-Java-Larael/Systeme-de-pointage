@@ -15,7 +15,7 @@ public class MainApp {
         specialityDaoImp specialityImp = new specialityDaoImp();
         Speciality speciality = new Speciality();
         speciality.setName("Java");
-        specialityImp.saveSpecialty(speciality);
+        specialityImp.saveSpeciality(speciality);
 
         // Teacher
         /*Teacher Teacher = new Teacher();

@@ -83,14 +83,14 @@ public class specialityDaoImp implements specialityDao {
     public void saveSpeciality(Speciality t) throws DAOException {
 
         try (Connection connection = ConnectionFactory.getInstance().getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_Speciality_SQL)) {
-            preparedStatement.setInt(1, t.getId_speciality());
-            preparedStatement.setString(2,t.getName() );
+
+            preparedStatement.setString(1,t.getName() );
 
 
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            // printSQLException(e);
+            e.printStackTrace();
         }
 
 
