@@ -11,11 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class teacherDaoImp implements teacherDao {
-
-
 
     @Override
     public Teacher getTeacher(long id) throws DAOException {
@@ -80,7 +77,7 @@ public class teacherDaoImp implements teacherDao {
             //   Connection connection = DriverManager.getConnection(url, teachername, password);
             Connection connection =   ConnectionFactory.getInstance().getConnection();
             PreparedStatement statement = connection.prepareStatement
-                    ("INSERT INTO teacher (email,first_name,last_name,gender,phone,password,status) VALUES (?,?,?,?,?,?,?)");
+                    ("INSERT INTO teacher (email,first_name,last_name,gender,phone,password,status,id_speciality) VALUES (?,?,?,?,?,?,?,?)");
             statement.setString(1, teacher.getEmail());
             statement.setString(2, teacher.getFirst_name());
             statement.setString(3, teacher.getLast_name());

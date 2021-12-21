@@ -12,7 +12,7 @@ public interface RoleDao {
 
     void saveRole(Role t) throws DAOException;
 
-    void updateRole(Role t, String[] params) throws DAOException;
+    void updateRole(Role t) throws DAOException;
 
     boolean deleteRole(Role t) throws DAOException;
 }

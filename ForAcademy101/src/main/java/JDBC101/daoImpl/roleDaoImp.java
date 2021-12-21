@@ -99,7 +99,7 @@ public class roleDaoImp implements RoleDao {
 
 
     @Override
-    public void updateRole(Role t, String[] params) throws DAOException {
+    public void updateRole(Role t) throws DAOException {
         try (Connection connection = ConnectionFactory.getInstance().getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_role_SQL);) {
             statement.setInt(1, t.getId_role());
             statement.setString(2, t.getName());
