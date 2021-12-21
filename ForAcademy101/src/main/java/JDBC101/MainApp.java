@@ -1,6 +1,7 @@
 package JDBC101;
 
 import JDBC101.JDBCfactory.ConnectionFactory;
+import JDBC101.daoImpl.addressDaoImp;
 import JDBC101.daoImpl.userDaoImp;
 import JDBC101.model.Address;
 import JDBC101.model.User;
@@ -15,9 +16,9 @@ public class MainApp {
 
 
         Address address = new Address(2000,"Casablanca","rue ait baha");
+        addressDaoImp addDao = new addressDaoImp();
+        addDao.saveAddress(address);
 
-AddressServiceImpl newadress = new AddressServiceImpl();
-        newadress.addAddress(address);
-    }
+      }
 
 }
