@@ -4,10 +4,9 @@ import JDBC101.handlingExceptions.DAOException;
 import JDBC101.model.Event;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface eventDao {
-    Optional<Event> getEvent(long id) throws DAOException;
+    Event getEvent(long id) throws DAOException;
 
     List<Event> getAllEvent() throws DAOException;
 
@@ -15,5 +14,5 @@ public interface eventDao {
 
     void updateEvent(Event t, String[] params) throws DAOException;
 
-    void deleteEvent(Event t) throws DAOException;
+    boolean deleteEvent(Event t) throws DAOException;
 }
