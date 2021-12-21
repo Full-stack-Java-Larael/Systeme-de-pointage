@@ -21,7 +21,7 @@ public class specialityDaoImp implements specialityDao {
 
     @Override
     public void saveSpecialty(Speciality t) throws DAOException {
-        
+         
     }
 
     @Override
