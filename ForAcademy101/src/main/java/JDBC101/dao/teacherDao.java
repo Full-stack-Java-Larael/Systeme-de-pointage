@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface teacherDao {
-    Optional<Teacher> getTeacher(long id) throws DAOException;
+    Teacher getTeacher(long id) throws DAOException;
 
     List<Teacher> getAllTeacher() throws DAOException;
 

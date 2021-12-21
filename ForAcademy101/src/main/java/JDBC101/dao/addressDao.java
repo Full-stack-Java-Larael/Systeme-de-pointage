@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface addressDao {
 
-    Optional<Address> getAddress(long id) throws DAOException, SQLException;
+    Address getAddress(long id) throws DAOException, SQLException;
 
     List<Address> getAllAddress() throws DAOException;
 

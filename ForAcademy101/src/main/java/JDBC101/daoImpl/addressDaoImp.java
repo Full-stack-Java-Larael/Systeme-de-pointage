@@ -23,13 +23,13 @@ public class addressDaoImp implements addressDao {
     private static final String INSERT_ADDRESS_SQL = "INSERT INTO address" + "  (postal_code, city, street) VALUES " +
             " (?, ?, ?);";
 
-    private static final String SELECT_ADDRESS_BY_ID = "select * from address where id_address =?";
+    private static final String SELECT_ADDRESS_BY_ID = "select * from address where id_user =?";
     private static final String SELECT_ALL_ADDRESS = "select * from address";
     private static final String DELETE_ADDRESS_SQL = "delete from address where id_address = ?;";
     private static final String UPDATE_ADDRESS_SQL = "update address set postal_code = ?,city= ?, street =? where id = ?;";
 
     @Override
-    public Optional<Address> getAddress(long id) throws DAOException  {
+    public Address getAddress(long id) throws DAOException  {
         Address address = null;
 
         try (Connection connection = ConnectionFactory.getInstance().getConnection();
@@ -52,7 +52,7 @@ public class addressDaoImp implements addressDao {
         } catch (DAOException | SQLException e) {
            // printSQLException(e);
         }
-        return Optional.ofNullable(address);
+        return address;
 
 
 

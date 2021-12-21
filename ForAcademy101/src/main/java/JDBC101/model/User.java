@@ -13,37 +13,39 @@ public class User {
     private boolean status;
     private Role role;
 
-    public Address getAddress() {
-
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
     public User() {
 
     }
 
+    // get user Address
+    public Address getAddress() {
+
+        return address;
+    }
+    // set user address
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    // Get role
+    public Role getRole() {
+        return role;
+    }
+    // Set role
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    // get user id
     public Long getId_user() {
         return id_user;
     }
 
+    // set user id
     public void setId_user(Long id_user) {
         this.id_user = id_user;
     }
-
+    
     public String getFirst_name() {
         return first_name;
     }
