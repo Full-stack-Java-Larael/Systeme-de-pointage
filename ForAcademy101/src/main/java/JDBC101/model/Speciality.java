@@ -11,7 +11,11 @@ public class Speciality {
         this.name = name;
     }
 
-    public Speciality() {
+    public Speciality(int id) {
+
+    }
+
+    public  Speciality(){
 
     }
 

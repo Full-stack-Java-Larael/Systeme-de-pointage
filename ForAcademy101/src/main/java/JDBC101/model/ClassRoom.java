@@ -1,5 +1,8 @@
 package JDBC101.model;
 
+import java.sql.Date;
+import java.sql.Time;
+
 public class ClassRoom {
 
     private int id_class_room;
@@ -9,11 +12,17 @@ public class ClassRoom {
     private Speciality speciality = new Speciality();
     private ClassRoom classRoom;
 
-    public ClassRoom(int id_class_room, String name, Speciality speciality) {
+    public ClassRoom(){
+
+    }
+    public ClassRoom(int id_class_room, String name,String startDate,String endDate, Speciality speciality) {
         this.id_class_room = id_class_room;
-        this.name = name;
+        this.setName(name);
+        this.setDay_end_hour(endDate);
+        this.setDay_start_hour(startDate);
         this.speciality = speciality;
     }
+
 
     public int getId_class_room() {
         return id_class_room;
@@ -31,16 +40,16 @@ public class ClassRoom {
         this.name = name;
     }
 
-    public String getDay_start_hour() {
-        return day_start_hour;
+    public Time getDay_start_hour() {
+        return new Time(345678);
     }
 
     public void setDay_start_hour(String day_start_hour) {
         this.day_start_hour = day_start_hour;
     }
 
-    public String getDay_end_hour() {
-        return day_end_hour;
+    public Time getDay_end_hour() {
+        return new Time(3245678);
     }
 
     public void setDay_end_hour(String day_end_hour) {
@@ -54,7 +63,6 @@ public class ClassRoom {
     public void setSpecialty(Speciality speciality) {
         this.speciality = speciality;
     }
-
     public ClassRoom createClassRoom(){
         return classRoom;
     }

@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface classRoomDao {
-    Optional<ClassRoom> getClassRoom(long id) throws DAOException;
+    ClassRoom getClassRoom(long id) throws DAOException;
 
     List<ClassRoom> getAllClassRoom() throws DAOException;
 
-    void saveClassRoom(ClassRoom t) throws DAOException;
+    ClassRoom saveClassRoom(ClassRoom t) throws DAOException;
 
     void updateClassRoom(ClassRoom t, String[] params) throws DAOException;
 
