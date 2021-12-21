@@ -1,9 +1,12 @@
 package JDBC101;
 
 import JDBC101.daoImpl.*;
+import JDBC101.model.Event;
 import JDBC101.model.Role;
 import JDBC101.model.Speciality;
 import JDBC101.model.Teacher;
+
+import java.util.Date;
 
 
 public class MainApp {
@@ -12,11 +15,19 @@ public class MainApp {
     public static void main(String[] args) {
         teacherDaoImp teacherDao = new teacherDaoImp();
         // Speciality
-        specialityDaoImp specialityImp = new specialityDaoImp();
+        /*specialityDaoImp specialityImp = new specialityDaoImp();
         Speciality speciality = new Speciality();
-        speciality.setName("Java");
+        speciality.setName("akram");
         specialityImp.saveSpeciality(speciality);
+        */
+        // Event
+        eventDaoImp event = new eventDaoImp();
+        Event event1 = new Event();
+        event1.setDescription("an event on quantum gravity ");
+        event1.setStatus(1);
+        event1.setName("a day in the life of");
 
+        event.saveEvent(event1);
         // Teacher
         /*Teacher Teacher = new Teacher();
         Teacher.setFirst_name("Abdelaziz");

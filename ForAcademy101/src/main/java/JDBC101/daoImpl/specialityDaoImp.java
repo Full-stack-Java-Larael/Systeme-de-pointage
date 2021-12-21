@@ -40,13 +40,11 @@ public class specialityDaoImp implements specialityDao {
 
                 speciality = new Speciality(id_Speciality, name);
 
-
             }
 
         } catch (DAOException | SQLException e) {
             // printSQLException(e);
         }
-
 
         return speciality;
     }

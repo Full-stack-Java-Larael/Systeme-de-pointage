@@ -5,10 +5,7 @@ import JDBC101.dao.eventDao;
 import JDBC101.handlingExceptions.DAOException;
 import JDBC101.model.Event;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +34,7 @@ public class eventDaoImp implements eventDao {
             while (rs.next()) {
                 int id_event = rs.getInt("id");
                 String name = rs.getString("name");
-                String date = rs.getString("date");
+                Date date = Date.valueOf(rs.getString("date"));
                 String description = rs.getString("description");
                 int status = rs.getInt("status");
 
@@ -72,7 +69,7 @@ public class eventDaoImp implements eventDao {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                String date = rs.getString("date");
+                Date date = rs.getDate("date");
                 String description = rs.getString("description");
                 int status = rs.getInt("status");
                 Events.add( new Event( id, name, date, description, status));
@@ -88,16 +85,15 @@ public class eventDaoImp implements eventDao {
     public void saveEvent(Event t) throws DAOException {
 
         try (Connection connection = ConnectionFactory.getInstance().getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_Event_SQL)) {
-            preparedStatement.setInt(1, t.getId_event());
-            preparedStatement.setString(2,t.getName() );
-            preparedStatement.setString(3,t.getDate() );
-            preparedStatement.setString(4,t.getDescription() );
-            preparedStatement.setInt(5,t.getStatus() );
+            preparedStatement.setString(1,t.getName() );
+            preparedStatement.setDate(2,t.getDate() );
+            preparedStatement.setString(3,t.getDescription() );
+            preparedStatement.setInt(4,t.getStatus() );
 
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            // printSQLException(e);
+            e.printStackTrace();
         }
 
 
@@ -109,11 +105,10 @@ public class eventDaoImp implements eventDao {
     @Override
     public void updateEvent(Event t, String[] params) throws DAOException {
         try (Connection connection = ConnectionFactory.getInstance().getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_Event_SQL);) {
-            statement.setInt(1, t.getId_event());
-            statement.setString(2, t.getName());
-            statement.setString(3, t.getDate());
-            statement.setString(4, t.getDescription());
-            statement.setInt(5, t.getStatus());
+            statement.setString(1, t.getName());
+            statement.setDate(2, t.getDate());
+            statement.setString(3, t.getDescription());
+            statement.setInt(4, t.getStatus());
 
             statement.executeUpdate() ;
         } catch (SQLException throwables) {
@@ -127,6 +122,7 @@ public class eventDaoImp implements eventDao {
     public boolean deleteEvent(Event t) throws DAOException {
 
         boolean rowDeleted = false;
+
         try (Connection connection = ConnectionFactory.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_Event_SQL);) {
             statement.setLong(1, t.getId_event());
