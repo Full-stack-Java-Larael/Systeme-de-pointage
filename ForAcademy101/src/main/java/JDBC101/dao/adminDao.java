@@ -13,7 +13,7 @@ public interface adminDao {
 
     void saveAdmin(Admin t) throws DAOException;
 
-    void updateAdmin(Admin t, String[] params) throws DAOException;
+    void updateAdmin(Admin admin) throws DAOException;
 
     void deleteAdmin(Admin t) throws DAOException;
 }
