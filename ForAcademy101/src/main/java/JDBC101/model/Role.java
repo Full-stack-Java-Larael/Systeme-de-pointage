@@ -9,7 +9,7 @@ public class Role {
     private String name;
     private String[] privileges;
 
-    public Role(int id_role, String name, String[] privileges) {
+    public Role(int id_role, String name, String privileges) {
         this.id_role = id_role;
         this.name = name;
         this.privileges = privileges;
@@ -31,7 +31,7 @@ public class Role {
         this.name = name;
     }
 
-    public String[] getPrivileges() {
+    public String getPrivileges() {
         return privileges;
     }
 
