@@ -5,7 +5,7 @@ import java.sql.Time;
 
 public class ClassRoom {
 
-    private int id_class_room;
+    private long id_class_room;
     private String name;
     private String day_start_hour;
     private String day_end_hour;
@@ -15,7 +15,7 @@ public class ClassRoom {
     public ClassRoom(){
 
     }
-    public ClassRoom(int id_class_room, String name,String startDate,String endDate, Speciality speciality) {
+    public ClassRoom(long id_class_room, String name,String startDate,String endDate, Speciality speciality) {
         this.id_class_room = id_class_room;
         this.setName(name);
         this.setDay_end_hour(endDate);
@@ -24,11 +24,11 @@ public class ClassRoom {
     }
 
 
-    public int getId_class_room() {
+    public long getId_class_room() {
         return id_class_room;
     }
 
-    public void setId_class_room(int id_class_room) {
+    public void setId_class_room(long id_class_room) {
         this.id_class_room = id_class_room;
     }
 

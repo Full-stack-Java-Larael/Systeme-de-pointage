@@ -12,7 +12,7 @@ import java.util.List;
 public class classRoomDaoImp implements classRoomDao {
     private final String SELECT_ALL = "SELECT * FROM classroom WHERE id_classroom = ? LIMIT 1";
     private final String SAVE_CLASS_ROOM = "INSERT INTO classroom (name,day_start_hour,day_end_hour,id_speciality) VALUES (?,?,?,?)";
-
+    private long lastInsertId;
     @Override
     public ClassRoom getClassRoom(long id) throws DAOException {
         try {
@@ -49,13 +49,13 @@ public class classRoomDaoImp implements classRoomDao {
             statement.setTime(2,classRoom.getDay_start_hour());
             statement.setTime(3,classRoom.getDay_end_hour());
             statement.setLong(4,classRoom.getSpecialty().getId_speciality());
-statement.executeUpdate();
+            statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
-            System.out.println(resultSet);
 
             while (resultSet.next()){
-                System.out.println(resultSet.getLong(1));
+                this.lastInsertId = resultSet.getLong(1);
             }
+            classRoom.setId_class_room(this.lastInsertId);
             return classRoom;
         }catch (SQLException e){
             e.printStackTrace();
