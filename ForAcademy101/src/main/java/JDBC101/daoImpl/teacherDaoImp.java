@@ -16,9 +16,9 @@ public class teacherDaoImp implements teacherDao {
 
     @Override
     public Teacher getTeacher(long id) throws DAOException {
-        try {
-            Connection connection = ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM teacher WHERE id_user = ?");
+        try (   Connection connection = ConnectionFactory.getInstance().getConnection();
+                PreparedStatement statement = connection.prepareStatement("SELECT * FROM teacher WHERE id_user = ?");){
+
             statement.setLong(1,id);
             ResultSet resultSet = statement.executeQuery();
             // new teacher model
@@ -44,9 +44,9 @@ public class teacherDaoImp implements teacherDao {
 
     @Override
     public List<Teacher> getAllTeacher() throws DAOException {
-        try {
-            Connection connection = ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM teacher");
+        try( Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM teacher");) {
+
             ResultSet resultSet = statement.executeQuery();
             List<Teacher> teachersList = new ArrayList<Teacher>();
             while (resultSet.next()){
@@ -73,11 +73,11 @@ public class teacherDaoImp implements teacherDao {
 
     @Override
     public void saveTeacher(Teacher teacher) throws DAOException {
-        try {
+        try (   Connection connection =   ConnectionFactory.getInstance().getConnection();
+                PreparedStatement statement = connection.prepareStatement
+                        ("INSERT INTO teacher (email,first_name,last_name,gender,phone,password,status,id_speciality) VALUES (?,?,?,?,?,?,?,?)");){
             //   Connection connection = DriverManager.getConnection(url, teachername, password);
-            Connection connection =   ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement
-                    ("INSERT INTO teacher (email,first_name,last_name,gender,phone,password,status,id_speciality) VALUES (?,?,?,?,?,?,?,?)");
+
             statement.setString(1, teacher.getEmail());
             statement.setString(2, teacher.getFirst_name());
             statement.setString(3, teacher.getLast_name());
@@ -97,10 +97,10 @@ public class teacherDaoImp implements teacherDao {
 
     @Override
     public void updateTeacher(Teacher teacher) throws DAOException {
-        try {
-            Connection connection =   ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement
-                    ("UPDATE teacher SET email = ?, first_name = ?, last_name = ?, address_id = ?, role = ?, phone = ?,gender = ?,password = ?,status = ? WHERE id_user = ?");
+        try(            Connection connection =   ConnectionFactory.getInstance().getConnection();
+                        PreparedStatement statement = connection.prepareStatement
+                                ("UPDATE teacher SET email = ?, first_name = ?, last_name = ?, address_id = ?, role = ?, phone = ?,gender = ?,password = ?,status = ? WHERE id_user = ?");) {
+
             statement.setString(1, teacher.getEmail());
             statement.setString(2, teacher.getFirst_name());
             statement.setString(3, teacher.getLast_name());
@@ -120,9 +120,9 @@ public class teacherDaoImp implements teacherDao {
 
     @Override
     public void deleteTeacher(Teacher teacher) throws DAOException {
-        try {
-            Connection connection = ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM teachers WHERE id_user = ?");
+        try(Connection connection = ConnectionFactory.getInstance().getConnection();
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM teachers WHERE id_user = ?");) {
+
             statement.setLong(1,teacher.getId_user());
         }catch (SQLException e){
             e.printStackTrace();

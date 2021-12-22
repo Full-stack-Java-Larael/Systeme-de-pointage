@@ -15,9 +15,9 @@ public class classRoomDaoImp implements classRoomDao {
     private long lastInsertId;
     @Override
     public ClassRoom getClassRoom(long id) throws DAOException {
-        try {
-            Connection connection = ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement(SELECT_ALL);
+        try(Connection connection = ConnectionFactory.getInstance().getConnection();
+            PreparedStatement statement = connection.prepareStatement(SELECT_ALL)) {
+
             statement.setLong(1,id);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -42,9 +42,9 @@ public class classRoomDaoImp implements classRoomDao {
 
     @Override
     public ClassRoom saveClassRoom(ClassRoom classRoom) throws DAOException {
-        try {
-            Connection connection = ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement(SAVE_CLASS_ROOM,Statement.RETURN_GENERATED_KEYS);
+        try( Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(SAVE_CLASS_ROOM,Statement.RETURN_GENERATED_KEYS)) {
+
             statement.setString(1,classRoom.getName());
             statement.setTime(2,classRoom.getDay_start_hour());
             statement.setTime(3,classRoom.getDay_end_hour());
