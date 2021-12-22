@@ -18,10 +18,10 @@ public class userDaoImp implements userDao{
 
     @Override
     public Optional<User> getUser(long id_user) throws DAOException {
-        try {
-            Connection connection =   ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement
-                    ("select * from users where id_user = ?;");
+        try( Connection connection =   ConnectionFactory.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement
+                     ("select * from users where id_user = ?;");) {
+
             statement.setLong(1,id_user);
             ResultSet resultSet = statement.executeQuery();
 
@@ -42,9 +42,9 @@ public class userDaoImp implements userDao{
 
     @Override
     public List<User> getAllUser() throws DAOException {
-        try {
-            Connection connection = ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users");
+        try(Connection connection = ConnectionFactory.getInstance().getConnection();
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users");) {
+
             ResultSet resultSet = statement.executeQuery();
             List<User> usersList = new ArrayList<User>();
             while(resultSet.next()){
@@ -64,11 +64,11 @@ public class userDaoImp implements userDao{
 
     public static void saveUser(User user) throws DAOException {
 
-        try {
+        try(    Connection connection =   ConnectionFactory.getInstance().getConnection();
+                PreparedStatement statement = connection.prepareStatement
+                        ("INSERT INTO users (email,first_name,last_name,address_id,role,phone,gender,password,status) VALUES (?,?,?,?,?,?,?,?,?)");) {
             //   Connection connection = DriverManager.getConnection(url, username, password);
-            Connection connection =   ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement
-                    ("INSERT INTO users (email,first_name,last_name,address_id,role,phone,gender,password,status) VALUES (?,?,?,?,?,?,?,?,?)");
+
             statement.setString(1, user.getEmail());
             statement.setString(2, user.getFirst_name());
             statement.setString(3, user.getLast_name());
@@ -88,10 +88,10 @@ public class userDaoImp implements userDao{
 
     @Override
     public void updateUser(User user) throws DAOException{
-        try {
-            Connection connection =   ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement
-                    ("UPDATE users  first_name = ?, last_name = ?,address_id = ?,phone = ?,email = ?,password = ?,role = ) WHERE id_user = ?");
+        try(  Connection connection =   ConnectionFactory.getInstance().getConnection();
+              PreparedStatement statement = connection.prepareStatement
+                      ("UPDATE users  first_name = ?, last_name = ?,address_id = ?,phone = ?,email = ?,password = ?,role = ) WHERE id_user = ?");) {
+
             statement.setString(1, user.getFirst_name());
             statement.setString(2, user.getLast_name());
             statement.setLong(3, user.getAddress().getId_address());
@@ -108,10 +108,10 @@ public class userDaoImp implements userDao{
 
     @Override
     public void deleteUser(User user) throws DAOException{
-        try {
-            Connection connection =   ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement
-                    ("DELETE FROM users WHERE id_user = ?");
+        try(   Connection connection =   ConnectionFactory.getInstance().getConnection();
+               PreparedStatement statement = connection.prepareStatement
+                       ("DELETE FROM users WHERE id_user = ?");) {
+
             statement.setLong(1, user.getId_user());
             statement.execute();
         }catch (SQLException e){

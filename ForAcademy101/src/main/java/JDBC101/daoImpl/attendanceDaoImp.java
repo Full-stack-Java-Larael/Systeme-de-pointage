@@ -16,9 +16,9 @@ public class attendanceDaoImp implements attendanceDao {
     private static final String GET_ATTENDANCE = "SELECT * FROM attendance";
     @Override
     public Attendance getAttendance(long id) throws DAOException {
-        try {
-            Connection connection = ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement(GET_ATTENDANCE);
+        try( Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(GET_ATTENDANCE)) {
+
             ResultSet resultSet = statement.executeQuery();
         }catch(SQLException e){
             e.printStackTrace();
