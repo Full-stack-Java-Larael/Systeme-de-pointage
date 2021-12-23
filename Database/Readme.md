@@ -15,11 +15,14 @@ CREATE TABLE IF NOT EXISTS users
     id_user SERIAL NOT NULL,
     first_name VARCHAR(45),
     last_name VARCHAR(45),
-    address_id int ,
+    id_address int ,
+    id_role int,
     phone VARCHAR(14),
     email VARCHAR(145) UNIQUE,
     password TEXT,
-	CONSTRAINT id_user PRIMARY KEY (id_user)
+	CONSTRAINT id_user PRIMARY KEY (id_user),
+    FOREIGN KEY (id_address) REFERENCES address(id_address),
+    FOREIGN KEY (id_role) REFERENCES role(id_role)
 );
 ```
 - Address:

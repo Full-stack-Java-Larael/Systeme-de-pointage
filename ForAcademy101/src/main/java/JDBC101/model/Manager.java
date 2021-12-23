@@ -1,9 +1,10 @@
 package JDBC101.model;
 
-public class Manager {
+public class Manager extends User {
 private Event event;
 private Teacher teacher;
 private Secretary secretary;
+
     private String entry_date;
 
     public String getEntry_date() {
@@ -17,7 +18,9 @@ private Secretary secretary;
     public Manager(String entry_date) {
         this.entry_date = entry_date;
     }
+    public Manager(){
 
+    }
 
 
     public Event createEvent(){

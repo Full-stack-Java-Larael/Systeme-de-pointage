@@ -5,29 +5,39 @@ CREATE DATABASE "foracademy"
     ENCODING = 'UTF8'
     CONNECTION LIMIT = -1;
 
-CREATE TABLE IF NOT EXISTS users
-(
-    id_user SERIAL NOT NULL,
-    first_name VARCHAR(45),
-    last_name VARCHAR(45),
-    -- address_id int ,
-    phone VARCHAR(14),
-    gender VARCHAR(45),
-    email VARCHAR(145) UNIQUE,
-    password TEXT,
-    status BOOLEAN,
-	CONSTRAINT id_user PRIMARY KEY (id_user)
-);
-
 CREATE TABLE IF NOT EXISTS address
 (
     id_adress SERIAL NOT NULL,
     postal_code VARCHAR(45),
     city VARCHAR(45),
     street VARCHAR(150),
-    id_user INT ,
-	CONSTRAINT id_adress PRIMARY KEY (id_adress),
-    FOREIGN KEY (id_user) REFERENCES users(id_user)
+	CONSTRAINT id_adress PRIMARY KEY (id_adress)
+);
+
+CREATE TABLE IF NOT EXISTS role
+(
+    id_role SERIAL NOT NULL,
+    name VARCHAR(45),
+    privileges JSON,
+	CONSTRAINT id_role PRIMARY KEY (id_role)
+);
+
+
+CREATE TABLE IF NOT EXISTS users
+(
+    id_user SERIAL NOT NULL,
+    first_name VARCHAR(45),
+    last_name VARCHAR(45),
+    id_adress INT ,
+    id_role INT,
+    phone VARCHAR(14),
+    gender VARCHAR(45),
+    email VARCHAR(145) UNIQUE,
+    password TEXT,
+    status BOOLEAN,
+	CONSTRAINT id_user PRIMARY KEY (id_user),
+    FOREIGN KEY (id_adress) REFERENCES address(id_adress),
+    FOREIGN KEY (id_role) REFERENCES role(id_role)
 );
 
 CREATE TABLE IF NOT EXISTS event
@@ -53,20 +63,9 @@ CREATE TABLE IF NOT EXISTS attendance
     FOREIGN KEY (id_user) REFERENCES users(id_user)
 );
 
-CREATE TABLE IF NOT EXISTS role
-(
-    id_role SERIAL NOT NULL,
-    name VARCHAR(45),
-    privileges JSON,
-	id_user INT,
-	CONSTRAINT id_role PRIMARY KEY (id_role),
-    FOREIGN KEY (id_user) REFERENCES users(id_user)
-);
-
 CREATE TABLE IF NOT EXISTS admin
 (
-    id_admin SERIAL NOT NULL,
-	CONSTRAINT id_admin PRIMARY KEY (id_admin)
+	CONSTRAINT id_user PRIMARY KEY (id_user),
 ) INHERITS (users);
 
 CREATE TABLE IF NOT EXISTS promotion(
@@ -96,27 +95,23 @@ CREATE TABLE IF NOT EXISTS classRoom(
 );
 
 CREATE TABLE IF NOT EXISTS student(
-    id_student SERIAL NOT NULL,
     id_promotion INT,
-    FOREIGN KEY (id_promotion) REFERENCES promotion(id_promotion),
-	CONSTRAINT id_student PRIMARY KEY (id_student)
+    CONSTRAINT id_user PRIMARY KEY (id_user),
+    FOREIGN KEY (id_promotion) REFERENCES promotion(id_promotion)
 ) INHERITS (users);
 
 CREATE TABLE IF NOT EXISTS manager (
-    id_manager SERIAL NOT NULL,
     enrty_date DATE,
-	CONSTRAINT id_manager PRIMARY KEY (id_manager)
+    CONSTRAINT id_user PRIMARY KEY (id_user)
 )INHERITS (users);
 
 CREATE TABLE IF NOT EXISTS secretary (
-    id_secretary SERIAL NOT NULL,
     enrty_date DATE,
-	CONSTRAINT id_secretary PRIMARY KEY (id_secretary)
+    CONSTRAINT id_user PRIMARY KEY (id_user)
 ) INHERITS (users);
 
 CREATE TABLE IF NOT EXISTS teacher (
-    id_teacher SERIAL NOT NULL,
     id_speciality INT,
-    FOREIGN KEY (id_speciality) REFERENCES speciality(id_speciality),
-	CONSTRAINT id_teacher PRIMARY KEY (id_teacher)
+    CONSTRAINT id_user PRIMARY KEY (id_user),
+    FOREIGN KEY (id_speciality) REFERENCES speciality(id_speciality)
 ) INHERITS (users);

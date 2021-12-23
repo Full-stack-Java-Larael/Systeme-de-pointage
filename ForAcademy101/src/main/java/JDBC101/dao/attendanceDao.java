@@ -11,9 +11,9 @@ public interface attendanceDao {
 
     List<Attendance> getAllAttendances() throws DAOException;
 
-    void saveAttendance(Attendance t) throws DAOException;
+    Attendance saveAttendance(Attendance attendance) throws DAOException;
 
-    void updateAttendance(Attendance t, String[] params) throws DAOException;
+    boolean updateAttendance(Attendance attendance) throws DAOException;
 
-    void deleteAttendance(Attendance t) throws DAOException;
+    boolean deleteAttendance(Attendance attendance) throws DAOException;
 }
