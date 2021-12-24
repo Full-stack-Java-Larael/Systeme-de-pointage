@@ -18,6 +18,7 @@ public class adminDaoImp implements adminDao{
     private final String GET_ADMIN = "select * from admin where id_user = ?";
     private final String GET_ADMINS = "SELECT * FROM admin";
     private final String UPDATE_ADMIN = "UPDATE admin SET first_name = ?, last_name = ?,phone = ?,email = ?,password = ?, id_address = ?, id_role = ? WHERE id_user = ?";
+    private final String DELETE_ADMIN = "DELETE FROM admin WHERE id_user = ?";
     @Override
     public Admin getAdmin(long id_user) throws DAOException {
         try (
@@ -116,16 +117,18 @@ public class adminDaoImp implements adminDao{
     }
 
     @Override
-    public void deleteAdmin(Admin Admin) throws DAOException{
-        try {
+    public boolean deleteAdmin(Admin admin) throws DAOException{
+        try (
             Connection connection =   ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement
-                    ("DELETE FROM Admins WHERE id_Admin = ?");
-            statement.setLong(1, Admin.getId_user());
+            PreparedStatement statement = connection.prepareStatement(DELETE_ADMIN);
+        ){
+            statement.setLong(1, admin.getId_user());
             statement.execute();
+            return true;
         }catch (SQLException e){
             e.printStackTrace();
             System.out.println("Unable to delete Admin!");
         }
+        return false;
     }
 }

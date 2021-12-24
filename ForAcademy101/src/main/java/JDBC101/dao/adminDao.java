@@ -15,5 +15,5 @@ public interface adminDao {
 
     Admin updateAdmin(Admin admin) throws DAOException;
 
-    void deleteAdmin(Admin t) throws DAOException;
+    boolean deleteAdmin(Admin admin) throws DAOException;
 }

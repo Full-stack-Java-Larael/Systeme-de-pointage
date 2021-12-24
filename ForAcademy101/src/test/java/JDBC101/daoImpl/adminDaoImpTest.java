@@ -2,13 +2,10 @@ package JDBC101.daoImpl;
 
 import JDBC101.model.Address;
 import JDBC101.model.Admin;
-import JDBC101.model.Attendance;
 import JDBC101.model.Role;
-import netscape.javascript.JSObject;
-import org.checkerframework.checker.units.qual.A;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,12 +14,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class adminDaoImpTest {
 
     @Test
+    @Order(4)
     void getAdmin() {
         adminDaoImp adminDaoImp = new adminDaoImp();
-        assertNotNull(adminDaoImp.getAdmin(2).getId_user());
+        assertNotNull(adminDaoImp.getAdmin(1).getId_user());
     }
 
     @Test
+    @Order(3)
     void getAllAdmin() {
         adminDaoImp adminDaoImp = new adminDaoImp();
         List<Admin> admins = new ArrayList<Admin>();
@@ -31,6 +30,7 @@ class adminDaoImpTest {
     }
 
     @Test
+    @Order(1)
     void saveAdmin() {
 
         // address
@@ -62,6 +62,7 @@ class adminDaoImpTest {
     }
 
     @Test
+    @Order(2)
     void updateAdmin() {
         // address
         Address address = new Address();
@@ -94,6 +95,11 @@ class adminDaoImpTest {
     }
 
     @Test
+    @Order(5)
     void deleteAdmin() {
+        adminDaoImp adminDaoImp = new adminDaoImp();
+        Admin admin = new Admin();
+        admin.setId_user((long)2);
+        assertTrue(adminDaoImp.deleteAdmin(admin));
     }
 }
