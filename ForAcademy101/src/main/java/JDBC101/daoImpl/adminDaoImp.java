@@ -17,6 +17,7 @@ public class adminDaoImp implements adminDao{
     private final String SAVE_ADMIN = "INSERT INTO admin (email,first_name,last_name,id_address,id_role,phone,gender,password,status) VALUES (?,?,?,?,?,?,?,?,?)";
     private final String GET_ADMIN = "select * from admin where id_user = ?";
     private final String GET_ADMINS = "SELECT * FROM admin";
+    private final String UPDATE_ADMIN = "UPDATE admin SET first_name = ?, last_name = ?,phone = ?,email = ?,password = ?, id_address = ?, id_role = ? WHERE id_user = ?";
     @Override
     public Admin getAdmin(long id_user) throws DAOException {
         try (
@@ -92,23 +93,26 @@ public class adminDaoImp implements adminDao{
 
 
     @Override
-    public void updateAdmin(Admin Admin) throws DAOException{
-        try {
-            Connection connection =   ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement
-                    ("UPDATE Admins  first_name = ?, last_name = ?,address_id = ?,phone = ?,email = ?,password = ?,role = ) WHERE id_Admin = ?");
-            statement.setString(1, Admin.getFirst_name());
-            statement.setString(2, Admin.getLast_name());
-            statement.setLong(3, Admin.getAddress().getId_address());
-            statement.setString(4, Admin.getPhone());
-            statement.setString(5, Admin.getEmail());
-            statement.setString(6, Admin.getPassword());
-            statement.setLong(7, Admin.getId_user());
+    public Admin updateAdmin(Admin admin) throws DAOException{
+        try (
+                Connection connection = ConnectionFactory.getInstance().getConnection();
+                PreparedStatement statement = connection.prepareStatement(UPDATE_ADMIN)
+            ){
+            statement.setString(1, admin.getFirst_name());
+            statement.setString(2, admin.getLast_name());
+            statement.setString(3, admin.getPhone());
+            statement.setString(4, admin.getEmail());
+            statement.setString(5, admin.getPassword());
+            statement.setLong(6, admin.getAddress().getId_address());
+            statement.setLong(7,admin.getRole().getId_role());
+            statement.setLong(8, admin.getId_user());
             statement.execute();
+            return admin;
         }catch (SQLException e){
             e.printStackTrace();
             System.out.println("Unable to update Admin!");
         }
+        return null;
     }
 
     @Override
