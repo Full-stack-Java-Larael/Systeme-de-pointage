@@ -77,14 +77,6 @@ CREATE TABLE IF NOT EXISTS role
     FOREIGN KEY (id_user) REFERENCES users(id_user)
 );
 ```
-- Admin:
-```sql
-CREATE TABLE IF NOT EXISTS admin
-(
-    id_admin SERIAL NOT NULL,
-	CONSTRAINT id_admin PRIMARY KEY (id_admin)
-) INHERITS (users);
-```
 - Promotion:
 ```sql
 CREATE TABLE IF NOT EXISTS promotion(
@@ -117,33 +109,36 @@ CREATE TABLE IF NOT EXISTS classRoom(
     FOREIGN KEY (id_speciality) REFERENCES speciality(id_speciality)
 );
 ```
+- Admin:
+```sql
+CREATE TABLE IF NOT EXISTS admin
+(
+    PRIMARY KEY (id_user)
+) INHERITS (users);
+```
 - Student:
 ```sql
 CREATE TABLE IF NOT EXISTS student(
-    id_student SERIAL NOT NULL,
-	CONSTRAINT id_student PRIMARY KEY (id_student)
+    PRIMARY KEY (id_user)
 ) INHERITS (users);
 ```
 - Manager
 ```sql
 CREATE TABLE IF NOT EXISTS manager (
-    id_manager SERIAL NOT NULL,
     enrty_date DATE,
-	CONSTRAINT id_manager PRIMARY KEY (id_manager)
+	PRIMARY KEY (id_user)
 )INHERITS (users);
 ```
 - Secretary
 ```sql
 CREATE TABLE IF NOT EXISTS secretary (
-    id_secretary SERIAL NOT NULL,
     enrty_date DATE,
-	CONSTRAINT id_secretary PRIMARY KEY (id_secretary)
+	PRIMARY KEY (id_user)
 ) INHERITS (users);
 ```
 - Teacher
 ```sql
 CREATE TABLE IF NOT EXISTS teacher (
-    id_teacher SERIAL NOT NULL,
-	CONSTRAINT id_teacher PRIMARY KEY (id_teacher)
+    PRIMARY KEY (id_user)
 ) INHERITS (users);
 ```

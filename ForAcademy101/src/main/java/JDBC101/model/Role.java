@@ -14,6 +14,9 @@ public class Role {
         this.name = name;
         //this.privileges = privileges;
     }
+    public  Role(){
+
+    }
 
     public int getId_role() {
         return id_role;

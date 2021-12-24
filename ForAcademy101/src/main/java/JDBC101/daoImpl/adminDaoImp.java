@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class adminDaoImp implements adminDao{
-
+    private final String SAVE_ADMIN = "INSERT INTO admin (email,first_name,last_name,id_address,id_role,phone,gender,password,status) VALUES (?,?,?,?,?,?,?,?,?)";
     @Override
     public Optional<Admin> getAdmin(long id_user) throws DAOException {
         try {
@@ -63,11 +63,8 @@ public class adminDaoImp implements adminDao{
 
     public void saveAdmin(Admin admin) throws DAOException {
 
-        try {
-            //   Connection connection = DriverManager.getConnection(url, Adminname, password);
-            Connection connection =   ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement
-                    ("INSERT INTO Admins (email,first_name,last_name,address_id,role,phone,gender,password,status) VALUES (?,?,?,?,?,?,?,?,?)");
+        try (Connection connection =   ConnectionFactory.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(SAVE_ADMIN);){
             statement.setString(1, admin.getEmail());
             statement.setString(2, admin.getFirst_name());
             statement.setString(3, admin.getLast_name());
