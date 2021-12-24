@@ -15,12 +15,13 @@ import java.util.Optional;
 
 public class adminDaoImp implements adminDao{
     private final String SAVE_ADMIN = "INSERT INTO admin (email,first_name,last_name,id_address,id_role,phone,gender,password,status) VALUES (?,?,?,?,?,?,?,?,?)";
+    private final String GET_ADMIN = "select * from Admins where id_Admin = ?";
     @Override
     public Optional<Admin> getAdmin(long id_user) throws DAOException {
-        try {
-            Connection connection =   ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement
-                    ("select * from Admins where id_Admin = ?;");
+        try (
+                Connection connection =   ConnectionFactory.getInstance().getConnection();
+                PreparedStatement statement = connection.prepareStatement(GET_ADMIN);
+            ){
             statement.setLong(1,id_user);
             ResultSet resultSet = statement.executeQuery();
 
@@ -63,8 +64,10 @@ public class adminDaoImp implements adminDao{
 
     public void saveAdmin(Admin admin) throws DAOException {
 
-        try (Connection connection =   ConnectionFactory.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(SAVE_ADMIN);){
+        try (
+                Connection connection =   ConnectionFactory.getInstance().getConnection();
+                PreparedStatement statement = connection.prepareStatement(SAVE_ADMIN);
+             ){
             statement.setString(1, admin.getEmail());
             statement.setString(2, admin.getFirst_name());
             statement.setString(3, admin.getLast_name());
@@ -77,7 +80,7 @@ public class adminDaoImp implements adminDao{
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("unable to save the product");
+            System.out.println("unable to save the admin");
         }
     }
 
