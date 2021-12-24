@@ -13,7 +13,7 @@ public interface addressDao {
 
     List<Address> getAllAddress() throws DAOException;
 
-    void saveAddress(Address t) throws DAOException;
+    Address saveAddress(Address address) throws DAOException;
 
     void updateAddress(Address t) throws DAOException;
 

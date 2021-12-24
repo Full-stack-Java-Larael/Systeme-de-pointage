@@ -5,11 +5,8 @@ import JDBC101.dao.addressDao;
 import JDBC101.handlingExceptions.DAOException;
 import JDBC101.model.Address;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.*;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -21,13 +18,13 @@ public class addressDaoImp implements addressDao {
 
 
 
-    private static final String INSERT_ADDRESS_SQL = "INSERT INTO address (postal_code, city, street,id_user ) VALUES (?, ?,?,?);";
+    private static final String INSERT_ADDRESS_SQL = "INSERT INTO address (postal_code, city, street) VALUES (?, ?, ?)";
 
 
-    private static final String SELECT_ADDRESS_BY_ID = "select * from address where id_user =?";
+    private static final String SELECT_ADDRESS_BY_ID = "select * from address where id_address =?";
     private static final String SELECT_ALL_ADDRESS = "select * from address";
     private static final String DELETE_ADDRESS_SQL = "delete from address where id_address = ?;";
-    private static final String UPDATE_ADDRESS_SQL = "update address set postal_code = ?,city= ?, street =? where id = ?;";
+    private static final String UPDATE_ADDRESS_SQL = "update address set postal_code = ?,city= ?, street =? where id_address = ?;";
 
     @Override
     public Address getAddress(long id) throws DAOException  {
@@ -93,21 +90,24 @@ public class addressDaoImp implements addressDao {
     }
 
     @Override
-    public void saveAddress(Address t) throws DAOException {
+    public Address saveAddress(Address address) throws DAOException {
 
-        try (Connection connection = ConnectionFactory.getInstance().getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ADDRESS_SQL)) {
-            preparedStatement.setInt(1, t.getPostal_code());
-            preparedStatement.setString(2,t.getCity() );
-            preparedStatement.setString(3,t.getStreet() );
-            preparedStatement.setInt(4, 1);
-            System.out.println(preparedStatement);
-            preparedStatement.executeUpdate();
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(INSERT_ADDRESS_SQL, Statement.RETURN_GENERATED_KEYS)
+        ) {
+            statement.setInt(1, address.getPostal_code());
+            statement.setString(2,address.getCity() );
+            statement.setString(3,address.getStreet() );
+            statement.executeUpdate();
+            ResultSet resultSet = statement.getGeneratedKeys();
+            while (resultSet.next()){
+                address.setId_address(resultSet.getInt(1));
+            }
+            return address;
         } catch (SQLException e) {
            e.printStackTrace();
         }
-
-
-
+        return null;
     }
 
 
