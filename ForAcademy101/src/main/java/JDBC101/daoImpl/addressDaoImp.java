@@ -37,7 +37,7 @@ public class addressDaoImp implements addressDao {
 
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ADDRESS_BY_ID);) {
             preparedStatement.setLong(1, id);
-            System.out.println(preparedStatement);
+//            System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
 
 

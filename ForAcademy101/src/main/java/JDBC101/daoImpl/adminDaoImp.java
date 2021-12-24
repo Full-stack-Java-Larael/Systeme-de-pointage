@@ -15,7 +15,8 @@ import java.util.Optional;
 
 public class adminDaoImp implements adminDao{
     private final String SAVE_ADMIN = "INSERT INTO admin (email,first_name,last_name,id_address,id_role,phone,gender,password,status) VALUES (?,?,?,?,?,?,?,?,?)";
-    private final String GET_ADMIN = "select * from Admins where id_Admin = ?";
+    private final String GET_ADMIN = "select * from admin where id_user = ?";
+    private final String GET_ADMINS = "SELECT * FROM admin";
     @Override
     public Optional<Admin> getAdmin(long id_user) throws DAOException {
         try (
@@ -42,18 +43,25 @@ public class adminDaoImp implements adminDao{
 
     @Override
     public List<Admin> getAllAdmin() throws DAOException {
-        try {
-            Connection connection = ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Admins");
+        try (
+                Connection connection = ConnectionFactory.getInstance().getConnection();
+                PreparedStatement statement = connection.prepareStatement(GET_ADMINS);
+            ){
             ResultSet resultSet = statement.executeQuery();
             List<Admin> AdminsList = new ArrayList<Admin>();
             while(resultSet.next()){
-                Admin Admin = new Admin();
-                Admin.setId_user(resultSet.getLong("id_Admin"));
-                Admin.setFirst_name(resultSet.getString("first_name"));
-                Admin.setLast_name(resultSet.getString("last_name"));
-                Admin.setEmail(resultSet.getString("email"));
-                AdminsList.add(Admin);
+                Admin admin = new Admin();
+                admin.setId_user(resultSet.getLong("id_user"));
+                admin.setFirst_name(resultSet.getString("first_name"));
+                admin.setLast_name(resultSet.getString("last_name"));
+                admin.setEmail(resultSet.getString("email"));
+                admin.setPassword(resultSet.getString("password"));
+                admin.setStatus(resultSet.getBoolean("status"));
+                admin.setGender(resultSet.getString("gender"));
+                admin.setPhone(resultSet.getString("phone"));
+                admin.setRole(new roleDaoImp().getRole(resultSet.getLong("id_role")));
+                admin.setAddress(new addressDaoImp().getAddress(resultSet.getLong("id_address")));
+                AdminsList.add(admin);
             }
             return  AdminsList;
         }catch (SQLException e){

@@ -8,6 +8,8 @@ import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,6 +21,10 @@ class adminDaoImpTest {
 
     @Test
     void getAllAdmin() {
+        adminDaoImp adminDaoImp = new adminDaoImp();
+        List<Admin> admins = new ArrayList<Admin>();
+        admins = adminDaoImp.getAllAdmin();
+        assertInstanceOf(new ArrayList<Admin>().getClass(),admins);
     }
 
     @Test
