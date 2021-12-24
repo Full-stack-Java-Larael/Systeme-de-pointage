@@ -2,6 +2,7 @@ package JDBC101.daoImpl;
 
 import JDBC101.model.Address;
 import JDBC101.model.Admin;
+import JDBC101.model.Attendance;
 import JDBC101.model.Role;
 import netscape.javascript.JSObject;
 import org.checkerframework.checker.units.qual.A;
@@ -17,6 +18,8 @@ class adminDaoImpTest {
 
     @Test
     void getAdmin() {
+        adminDaoImp adminDaoImp = new adminDaoImp();
+        assertNotNull(adminDaoImp.getAdmin(2).getId_user());
     }
 
     @Test

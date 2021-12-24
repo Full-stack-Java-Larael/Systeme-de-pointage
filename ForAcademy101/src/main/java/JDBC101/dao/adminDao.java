@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface adminDao {
-    Optional<Admin> getAdmin(long id) throws DAOException;
+    Admin getAdmin(long id) throws DAOException;
 
     List<Admin> getAllAdmin() throws DAOException;
 

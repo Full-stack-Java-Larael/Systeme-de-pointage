@@ -18,23 +18,21 @@ public class adminDaoImp implements adminDao{
     private final String GET_ADMIN = "select * from admin where id_user = ?";
     private final String GET_ADMINS = "SELECT * FROM admin";
     @Override
-    public Optional<Admin> getAdmin(long id_user) throws DAOException {
+    public Admin getAdmin(long id_user) throws DAOException {
         try (
                 Connection connection =   ConnectionFactory.getInstance().getConnection();
                 PreparedStatement statement = connection.prepareStatement(GET_ADMIN);
             ){
             statement.setLong(1,id_user);
             ResultSet resultSet = statement.executeQuery();
-
-            Admin Admin = new Admin();
-            Optional<Admin> opt = Optional.ofNullable(Admin);
+            Admin admin = new Admin();
             while(resultSet.next()){
-                Admin.setId_user(resultSet.getLong("id_Admin"));
-                Admin.setFirst_name(resultSet.getString("first_name"));
-                Admin.setLast_name(resultSet.getString("last_name"));
-                Admin.setEmail(resultSet.getString("email"));
+                admin.setId_user(resultSet.getLong("id_user"));
+                admin.setFirst_name(resultSet.getString("first_name"));
+                admin.setLast_name(resultSet.getString("last_name"));
+                admin.setEmail(resultSet.getString("email"));
             }
-            return opt;
+            return admin;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
