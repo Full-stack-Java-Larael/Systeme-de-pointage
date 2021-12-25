@@ -19,8 +19,6 @@ class classRoomDaoImpTest {
     void getAllClassRoom() {
         classRoomDaoImp classRoomDaoImp = new classRoomDaoImp();
         List<ClassRoom> classRooms = classRoomDaoImp.getAllClassRoom();
-
-
     }
 
     @Test
