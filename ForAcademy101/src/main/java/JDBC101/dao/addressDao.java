@@ -15,7 +15,7 @@ public interface addressDao {
 
     Address saveAddress(Address address) throws DAOException;
 
-    void updateAddress(Address t) throws DAOException;
+    Address updateAddress(Address t) throws DAOException;
 
     boolean  deleteAddress(Address t) throws DAOException;
 }

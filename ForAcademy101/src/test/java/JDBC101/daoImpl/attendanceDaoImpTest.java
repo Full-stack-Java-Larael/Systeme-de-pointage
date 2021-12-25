@@ -62,7 +62,7 @@ class attendanceDaoImpTest {
     void deleteAttendance() {
         attendanceDaoImp attendanceDaoImp = new attendanceDaoImp();
         Attendance attendance = new Attendance();
-        attendance.setId_attendance(14);
+        attendance.setId_attendance(1);
         assertTrue(attendanceDaoImp.deleteAttendance(attendance));
     }
 }

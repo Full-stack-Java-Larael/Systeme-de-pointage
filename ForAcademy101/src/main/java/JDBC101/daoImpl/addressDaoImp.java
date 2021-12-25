@@ -28,65 +28,49 @@ public class addressDaoImp implements addressDao {
 
     @Override
     public Address getAddress(long id) throws DAOException  {
-        Address address = null;
-
-        try (Connection connection = ConnectionFactory.getInstance().getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ADDRESS_BY_ID);) {
+        try (
+                Connection connection = ConnectionFactory.getInstance().getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ADDRESS_BY_ID);
+         ) {
             preparedStatement.setLong(1, id);
-//            System.out.println(preparedStatement);
-            ResultSet rs = preparedStatement.executeQuery();
-
-
-            while (rs.next()) {
-                int postal_code = rs.getInt("postal_code");
-                String city = rs.getString("city");
-                String street = rs.getString("street");
-                address = new Address( postal_code, city, street);
-
-
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Address address = new Address();
+                address.setId_address(resultSet.getInt("id_address"));
+                address.setStreet(resultSet.getString("street"));
+                address.setCity(resultSet.getString("city"));
+                address.setPostal_code(resultSet.getInt("postal_code"));
+                return address;
             }
-
         } catch (DAOException | SQLException e) {
            // printSQLException(e);
         }
-        return address;
+        return null;
 
 
 
     }
 
     @Override
-    public List<Address> getAllAddress() throws DAOException  {
-
-
-        List <Address> addressList = new ArrayList<Address>();
-
-        try (Connection connection = ConnectionFactory.getInstance().getConnection();
-
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_ADDRESS);) {
-            System.out.println(preparedStatement);
-
-            ResultSet rs = preparedStatement.executeQuery();
-
-
-            while (rs.next()) {
-
-                Address address = new Address();
-
-               address.setId_address(rs.getInt("id"));
-               address.setPostal_code(rs.getInt("postal_code"));
-               address.setCity(rs.getString("city"));
-               address.setStreet(rs.getString("street"));
-
-                addressList.add(address);
-            }
+    public ArrayList<Address> getAllAddress() throws DAOException  {
+        ArrayList <Address> addressList = new ArrayList<Address>();
+        try (
+                Connection connection = ConnectionFactory.getInstance().getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_ADDRESS);
+            ) {
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    Address address = new Address();
+                    address.setId_address(resultSet.getInt("id_address"));
+                    address.setPostal_code(resultSet.getInt("postal_code"));
+                    address.setCity(resultSet.getString("city"));
+                    address.setStreet(resultSet.getString("street"));
+                    addressList.add(address);
+                }
         } catch (SQLException e) {
-         //   printSQLException(e);
+            e.printStackTrace();
         }
         return addressList;
-
     }
 
     @Override
@@ -113,28 +97,27 @@ public class addressDaoImp implements addressDao {
 
 
     @Override
-    public void updateAddress(Address t) throws DAOException {
+    public Address updateAddress(Address address) throws DAOException {
         try (Connection connection = ConnectionFactory.getInstance().getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_ADDRESS_SQL);) {
-            statement.setInt(1, t.getPostal_code());
-            statement.setString(2, t.getCity());
-            statement.setString(3, t.getStreet());
-            statement.setLong(4, t.getId_address());
-
-            statement.executeUpdate() ;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            statement.setInt(1, address.getPostal_code());
+            statement.setString(2, address.getCity());
+            statement.setString(3, address.getStreet());
+            statement.setLong(4, address.getId_address());
+            statement.executeUpdate();
+            return address;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-
+        return null;
     }
 
     @Override
-    public boolean deleteAddress(Address t) throws DAOException {
+    public boolean deleteAddress(Address address) throws DAOException {
 
         boolean rowDeleted = false;
         try (Connection connection = ConnectionFactory.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_ADDRESS_SQL);) {
-            statement.setLong(1, t.getId_address());
+            statement.setLong(1, address.getId_address());
             if(statement.executeUpdate() > 0){
                 rowDeleted = true;
             };
