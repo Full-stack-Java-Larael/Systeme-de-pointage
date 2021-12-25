@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface specialityDao {
-    Speciality getSpeciality(long id) throws DAOException;
+    Speciality getSpeciality(Speciality speciality) throws DAOException;
 
     ArrayList<Speciality> getAllSpeciality() throws DAOException;
 
     Speciality saveSpeciality(Speciality t) throws DAOException;
 
-    Speciality updateSpeciality(Speciality t, String[] params) throws DAOException;
+    Speciality updateSpeciality(Speciality speciality) throws DAOException;
 
     boolean deleteSpeciality(Speciality t) throws DAOException;
 
