@@ -1,5 +1,7 @@
 package JDBC101.serviceImpl;
 
+import JDBC101.daoImpl.addressDaoImp;
+import JDBC101.daoImpl.userDaoImp;
 import JDBC101.model.User;
 import JDBC101.service.userService;
 
@@ -8,21 +10,27 @@ import java.util.Optional;
 
 public class UserServiceImpl implements userService {
     
-    private JDBC101.daoImpl.userDaoImp userDaoImp;
+    private userDaoImp userDaoImp = new userDaoImp();
 
 
     @Override
     public void addUser(User user) {
         JDBC101.daoImpl.userDaoImp.saveUser(user);
+
     }
 
     @Override
     public User fetchUserById(long id_user) {
-        return null;
+
+
+
+
+        return userDaoImp.getUser(id_user);
     }
 
     @Override
     public void deleteUserById(User user) {
+        userDaoImp.deleteUser(user);
         
     }
 
@@ -30,7 +38,7 @@ public class UserServiceImpl implements userService {
 
     @Override
     public List<User> getAllUsers() {
-        return null;
+        return userDaoImp.getAllUser();
     }
 
 }

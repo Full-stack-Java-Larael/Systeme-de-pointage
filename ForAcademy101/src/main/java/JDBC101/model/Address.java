@@ -24,7 +24,7 @@ public class Address {
         return id_address;
     }
 
-    public void setId_address(int id_address) {
+    public void setId_address(long id_address) {
         this.id_address = id_address;
     }
 

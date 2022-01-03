@@ -7,7 +7,7 @@ import java.util.List;
 
 public class AddressServiceImpl implements addressService  {
 
-    private addressDaoImp addressDao;
+    private addressDaoImp addressDao = new addressDaoImp();
     @Override
     public void addAddress(Address address) {
 
@@ -21,16 +21,23 @@ public class AddressServiceImpl implements addressService  {
 
     @Override
     public void deleteAddressById(Address address) {
+
         addressDao.deleteAddress(address);
+
     }
 
     @Override
-    public void updateAddressPasswordById(String newPassword, long id_address) {
+    public void updateAddress( Address address) {
 
+
+
+        addressDao.updateAddress(address);
     }
+
+
 
     @Override
     public List<Address> getAllAddresss() {
-        return null;
+        return addressDao.getAllAddress();
     }
 }

@@ -8,7 +8,6 @@ import JDBC101.model.User;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class userDaoImp implements userDao{
 
@@ -17,7 +16,7 @@ public class userDaoImp implements userDao{
     }
 
     @Override
-    public Optional<User> getUser(long id_user) throws DAOException {
+    public User getUser(long id_user) throws DAOException {
         try( Connection connection =   ConnectionFactory.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement
                      ("select * from users where id_user = ?;");) {
@@ -26,14 +25,14 @@ public class userDaoImp implements userDao{
             ResultSet resultSet = statement.executeQuery();
 
             User user = new User();
-            Optional<User> opt = Optional.ofNullable(user);
+
             while(resultSet.next()){
                 user.setId_user(resultSet.getLong("id_user"));
                 user.setFirst_name(resultSet.getString("first_name"));
                 user.setLast_name(resultSet.getString("last_name"));
                 user.setEmail(resultSet.getString("email"));
             }
-            return opt;
+            return user;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
