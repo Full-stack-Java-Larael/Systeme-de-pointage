@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface classRoomService {
-    public void addClassRoom(ClassRoom ClassRoom);
-    public Optional<ClassRoom> fetchClassRoomById(int id_classRoom);
-    public void deleteClassRoomById(ClassRoom id_classRoom);
-    public void updateClassRoomPasswordById(String newPassword, String[] id_classRoom);
-    public List<ClassRoom> getAllClassRooms();
+     void addClassRoom(ClassRoom ClassRoom);
+    ClassRoom fetchClassRoomById(long id_classRoom);
+     void deleteClassRoomById(ClassRoom id_classRoom);
+     void updateClassRoomPasswordById(String newPassword, long id_classRoom);
+     List<ClassRoom> getAllClassRooms();
 }
