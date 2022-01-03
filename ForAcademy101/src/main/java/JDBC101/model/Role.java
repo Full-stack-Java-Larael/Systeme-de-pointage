@@ -1,15 +1,15 @@
 package JDBC101.model;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class Role {
 
     private Role role;
-    private int id_role;
+    private long id_role;
     private String name;
     private String privileges;
 
-    public Role(int id_role, String name, String privileges) {
+    public Role(long id_role, String name, String privileges) {
         this.id_role = id_role;
         this.name = name;
         //this.privileges = privileges;
@@ -18,11 +18,11 @@ public class Role {
 
     }
 
-    public int getId_role() {
+    public long getId_role() {
         return id_role;
     }
 
-    public void setId_role(int id_role) {
+    public void setId_role(long id_role) {
         this.id_role = id_role;
     }
 
