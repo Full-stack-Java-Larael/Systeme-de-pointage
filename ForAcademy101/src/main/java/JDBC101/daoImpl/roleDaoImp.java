@@ -5,129 +5,117 @@ import JDBC101.dao.RoleDao;
 import JDBC101.handlingExceptions.DAOException;
 import JDBC101.model.Role;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class roleDaoImp implements RoleDao {
 
-    private static final String INSERT_role_SQL = "INSERT INTO Role (name, privileges) VALUES (?, ?);";
+    private static final String INSERT_role_SQL = "INSERT INTO Role (name, privileges) VALUES (?, ?)";
 
     private static final String SELECT_role_BY_ID = "select * from Role where id_role =?";
     private static final String SELECT_ALL_role = "select * from Role";
     private static final String DELETE_role_SQL = "delete from Role where id_role = ?;";
-    private static final String UPDATE_role_SQL = "update Role set name = ?,privileges= ? where id_role = ?;";
+    private static final String UPDATE_role_SQL = "update Role set name = ? , privileges= ? where id_role = ?";
 
 
     @Override
     public Role getRole(long id) throws DAOException  {
-        Role role = null;
-
-        try (Connection connection = ConnectionFactory.getInstance().getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_role_BY_ID);) {
+        try (
+                Connection connection = ConnectionFactory.getInstance().getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_role_BY_ID)
+        ) {
             preparedStatement.setLong(1, id);
-//            System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
-
-
+            Role role = new Role();
             while (rs.next()) {
-                int id_role = rs.getInt("id");
-                String name = rs.getString("name");
-                String privileges = rs.getString("privileges");
-                role = new Role(id_role, name, privileges);
-
-
+                role.setId_role(rs.getInt("id_role"));
+                role.setName(rs.getString("name"));
+                role.setPrivileges(rs.getString("privileges"));
             }
-
+            return role;
         } catch (DAOException | SQLException e) {
-            // printSQLException(e);
+            e.printStackTrace();
         }
-
-
-        return role;
+        return null;
     }
 
     @Override
-    public List<Role> getAllRole() throws DAOException  {
-
-
-        List < Role > roles = new ArrayList<Role  >();
-
-        try (Connection connection = ConnectionFactory.getInstance().getConnection();
-
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_role);) {
-            System.out.println(preparedStatement);
-
-            ResultSet rs = preparedStatement.executeQuery();
-
-
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String name = rs.getString("name");
-                String privileges = rs.getString("privileges");
+    public ArrayList<Role> getAllRole() throws DAOException  {
+        try (
+                Connection connection = ConnectionFactory.getInstance().getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_role);
+        ) {
+            ArrayList <Role> roles = new ArrayList<Role>();
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                long id = resultSet.getLong("id_role");
+                String name = resultSet.getString("name");
+                String privileges = resultSet.getString("privileges");
                 roles.add( new Role( id, name, privileges));
             }
+            return  roles;
         } catch (SQLException e) {
-            //   printSQLException(e);
+            e.printStackTrace();
         }
-        return roles;
-
+        return null;
     }
 
     @Override
-    public void saveRole(Role t) throws DAOException {
+    public Role saveRole(Role role) throws DAOException {
 
-        try (Connection connection = ConnectionFactory.getInstance().getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_role_SQL)) {
-            preparedStatement.setInt(1, t.getId_role());
-            preparedStatement.setString(2,t.getName() );
-            preparedStatement.setString(3,t.getPrivileges() );
-            System.out.println(preparedStatement);
-            preparedStatement.executeUpdate();
+        try (
+                Connection connection = ConnectionFactory.getInstance().getConnection();
+                PreparedStatement statement = connection.prepareStatement(INSERT_role_SQL, Statement.RETURN_GENERATED_KEYS)
+        ) {
+//            statement.setLong(1, role.getId_role());
+            statement.setString(1,role.getName() );
+            statement.setString(2,role.getPrivileges());
+            statement.executeUpdate();
+            ResultSet resultSet = statement.getGeneratedKeys();
+            while (resultSet.next()){
+                role.setId_role(resultSet.getLong(1));
+            }
+            return role;
         } catch (SQLException e) {
-            // printSQLException(e);
+             e.printStackTrace();
         }
-
-
-
+        return null;
     }
 
 
 
     @Override
-    public void updateRole(Role t) throws DAOException {
-        try (Connection connection = ConnectionFactory.getInstance().getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_role_SQL);) {
-            statement.setInt(1, t.getId_role());
-            statement.setString(2, t.getName());
-            statement.setString(3, t.getPrivileges());
+    public Role updateRole(Role role) throws DAOException {
+        try (
+                Connection connection = ConnectionFactory.getInstance().getConnection();
+                PreparedStatement statement = connection.prepareStatement(UPDATE_role_SQL)
+        ) {
+            statement.setString(1, role.getName());
+            statement.setString(2, role.getPrivileges());
+            statement.setLong(3, role.getId_role());
 
             statement.executeUpdate() ;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            return role;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-
+        return null;
     }
 
     @Override
-    public boolean deleteRole(Role t) throws DAOException {
-
-        boolean rowDeleted = false;
-        try (Connection connection = ConnectionFactory.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(DELETE_role_SQL);) {
-            statement.setLong(1, t.getId_role());
+    public boolean deleteRole(Role role) throws DAOException {
+        try (
+                Connection connection = ConnectionFactory.getInstance().getConnection();
+                PreparedStatement statement = connection.prepareStatement(DELETE_role_SQL)
+        ) {
+            statement.setLong(1, role.getId_role());
             if(statement.executeUpdate() > 0){
-                rowDeleted = true;
+                return true;
             };
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
-
-        return rowDeleted;
-
+        return false;
     }
 }
