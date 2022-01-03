@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS attendance
 
 CREATE TABLE IF NOT EXISTS admin
 (
-	CONSTRAINT id_user PRIMARY KEY (id_user),
+	PRIMARY KEY (id_user)
 ) INHERITS (users);
 
 CREATE TABLE IF NOT EXISTS promotion(
@@ -96,22 +96,22 @@ CREATE TABLE IF NOT EXISTS classRoom(
 
 CREATE TABLE IF NOT EXISTS student(
     id_promotion INT,
-    CONSTRAINT id_user PRIMARY KEY (id_user),
+    PRIMARY KEY (id_user),
     FOREIGN KEY (id_promotion) REFERENCES promotion(id_promotion)
 ) INHERITS (users);
 
 CREATE TABLE IF NOT EXISTS manager (
     enrty_date DATE,
-    CONSTRAINT id_user PRIMARY KEY (id_user)
+    PRIMARY KEY (id_user)
 )INHERITS (users);
 
 CREATE TABLE IF NOT EXISTS secretary (
     enrty_date DATE,
-    CONSTRAINT id_user PRIMARY KEY (id_user)
+    PRIMARY KEY (id_user)
 ) INHERITS (users);
 
 CREATE TABLE IF NOT EXISTS teacher (
     id_speciality INT,
-    CONSTRAINT id_user PRIMARY KEY (id_user),
+    PRIMARY KEY (id_user),
     FOREIGN KEY (id_speciality) REFERENCES speciality(id_speciality)
 ) INHERITS (users);
