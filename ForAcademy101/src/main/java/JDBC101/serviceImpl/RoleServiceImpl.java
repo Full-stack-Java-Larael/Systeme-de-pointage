@@ -14,7 +14,7 @@ public class RoleServiceImpl implements roleService {
 
     @Override
     public Role fetchRoleById(long id_role) {
-        return Optional.empty();
+        return null;
     }
 
     @Override

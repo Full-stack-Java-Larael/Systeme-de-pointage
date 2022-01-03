@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public class AdminServiceImpl implements adminService {
-    adminDaoImp admin = new adminDaoImp();
+    private adminDaoImp admin = new adminDaoImp();
     @Override
     public void addAdmin(Admin Admin) {
         admin.saveAdmin(Admin);

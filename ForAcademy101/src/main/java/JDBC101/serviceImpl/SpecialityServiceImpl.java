@@ -14,7 +14,7 @@ public class SpecialityServiceImpl implements specialityService {
 
     @Override
     public Speciality fetchSpecialityById(long id_Speciality) {
-        return Optional.empty();
+        return null;
     }
 
     @Override

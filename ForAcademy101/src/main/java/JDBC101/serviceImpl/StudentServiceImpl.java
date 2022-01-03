@@ -14,7 +14,7 @@ public class StudentServiceImpl implements studentService {
 
     @Override
     public Student fetchStudentById(long id_student) {
-        return Optional.empty();
+        return null;
     }
 
     @Override

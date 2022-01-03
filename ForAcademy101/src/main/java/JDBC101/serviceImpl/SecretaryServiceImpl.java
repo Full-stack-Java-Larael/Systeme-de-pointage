@@ -14,7 +14,7 @@ public class SecretaryServiceImpl implements secretaryService {
 
     @Override
     public Secretary fetchSecretaryById(long id_secretary) {
-        return Optional.empty();
+        return null;
     }
 
     @Override

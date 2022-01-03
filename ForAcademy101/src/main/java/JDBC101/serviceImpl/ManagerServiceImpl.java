@@ -14,7 +14,7 @@ public class ManagerServiceImpl implements managerService {
 
     @Override
     public Manager fetchManagerById(long id_manager) {
-        return Optional.empty();
+        return null;
     }
 
     @Override

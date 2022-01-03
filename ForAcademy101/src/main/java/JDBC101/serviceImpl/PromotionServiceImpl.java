@@ -14,7 +14,7 @@ public class PromotionServiceImpl implements promotionService {
 
     @Override
     public Promotion fetchPromotionById(long id_promotion) {
-        return Optional.empty();
+        return null;
     }
 
     @Override
