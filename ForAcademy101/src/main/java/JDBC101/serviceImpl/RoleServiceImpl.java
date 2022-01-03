@@ -13,17 +13,17 @@ public class RoleServiceImpl implements roleService {
     }
 
     @Override
-    public Optional<Role> fetchRoleById(int id_role) {
+    public Role fetchRoleById(long id_role) {
         return Optional.empty();
     }
 
     @Override
-    public void deleteRoleById(Role id_role) {
+    public void deleteRoleById(Role role) {
 
     }
 
     @Override
-    public void updateRolePasswordById(String newPassword, String[] id_role) {
+    public void updateRolePasswordById(String newPassword, long id_role) {
 
     }
 

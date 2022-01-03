@@ -13,8 +13,8 @@ public class TeacherServiceImpl implements teacherService {
     }
 
     @Override
-    public Optional<Teacher> fetchTeacherById(int id_teacher) {
-        return Optional.empty();
+    public Teacher fetchTeacherById(long id_teacher) {
+        return null;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class TeacherServiceImpl implements teacherService {
     }
 
     @Override
-    public void updateTeacherPasswordById(String newPassword, String[] id_teacher) {
+    public void updateTeacherPasswordById(String newPassword, long id_teacher) {
 
     }
 

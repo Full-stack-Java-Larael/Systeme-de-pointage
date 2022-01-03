@@ -13,7 +13,7 @@ public class SpecialityServiceImpl implements specialityService {
     }
 
     @Override
-    public Optional<Speciality> fetchSpecialityById(int id_Speciality) {
+    public Speciality fetchSpecialityById(long id_Speciality) {
         return Optional.empty();
     }
 
@@ -23,7 +23,7 @@ public class SpecialityServiceImpl implements specialityService {
     }
 
     @Override
-    public void updateSpecialityPasswordById(String newPassword, String[] id_Speciality) {
+    public void updateSpecialityPasswordById(String newPassword, long id_Speciality) {
 
     }
 

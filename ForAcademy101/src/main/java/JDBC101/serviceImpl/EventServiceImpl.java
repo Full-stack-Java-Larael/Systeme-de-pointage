@@ -14,17 +14,17 @@ public class EventServiceImpl implements eventService {
     }
 
     @Override
-    public Optional<Event> fetchEventById(int id_event) {
-        return Optional.empty();
+    public Event fetchEventById(long id_event) {
+        return null;
     }
 
     @Override
-    public void deleteEventById(Event id_event) {
+    public void deleteEventById(Event event) {
 
     }
 
     @Override
-    public void updateEventPasswordById(String newPassword, String[] id_event) {
+    public void updateEventPasswordById(String newPassword, long id_event) {
 
     }
 

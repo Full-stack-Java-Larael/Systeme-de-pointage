@@ -13,17 +13,17 @@ public class StudentServiceImpl implements studentService {
     }
 
     @Override
-    public Optional<Student> fetchStudentById(int id_student) {
+    public Student fetchStudentById(long id_student) {
         return Optional.empty();
     }
 
     @Override
-    public void deleteStudentById(Student id_student) {
+    public void deleteStudentById(Student student) {
 
     }
 
     @Override
-    public void updateStudentPasswordById(String newPassword, String[] id_student) {
+    public void updateStudentPasswordById(String newPassword, long id_student) {
 
     }
 

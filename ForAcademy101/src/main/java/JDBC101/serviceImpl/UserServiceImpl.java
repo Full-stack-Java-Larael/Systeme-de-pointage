@@ -1,6 +1,5 @@
 package JDBC101.serviceImpl;
 
-import JDBC101.dao.userDao;
 import JDBC101.model.User;
 import JDBC101.service.userService;
 
@@ -18,17 +17,17 @@ public class UserServiceImpl implements userService {
     }
 
     @Override
-    public Optional<User> fetchUserById(int id_user) {
-        return Optional.empty();
+    public User fetchUserById(long id_user) {
+        return null;
     }
 
     @Override
-    public void deleteUserById(User id_user) {
+    public void deleteUserById(User user) {
         
     }
 
     @Override
-    public void updateUserPasswordById(String newPassword, String[] id_user) {
+    public void updateUserPasswordById(String newPassword, long id_user) {
 
     }
 

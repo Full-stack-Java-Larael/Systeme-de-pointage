@@ -13,17 +13,17 @@ public class SecretaryServiceImpl implements secretaryService {
     }
 
     @Override
-    public Optional<Secretary> fetchSecretaryById(int id_secretary) {
+    public Secretary fetchSecretaryById(long id_secretary) {
         return Optional.empty();
     }
 
     @Override
-    public void deleteSecretaryById(Secretary id_secretary) {
+    public void deleteSecretaryById(Secretary secretary) {
 
     }
 
     @Override
-    public void updateSecretaryPasswordById(String newPassword, String[] id_secretary) {
+    public void updateSecretaryPasswordById(String newPassword, long id_secretary) {
 
     }
 

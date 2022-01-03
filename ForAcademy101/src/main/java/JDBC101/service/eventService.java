@@ -3,13 +3,12 @@ package JDBC101.service;
 import JDBC101.model.Event;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface eventService {
 
-    public void addEvent(Event Event);
-    public Optional<Event> fetchEventById(int id_event);
-    public void deleteEventById(Event id_event);
-    public void updateEventPasswordById(String newPassword, String[] id_event);
-    public List<Event> getAllEvents();
+     void addEvent(Event Event);
+     Event fetchEventById(long id_event);
+     void deleteEventById(Event event);
+     void updateEventPasswordById(String newPassword, long id_event);
+     List<Event> getAllEvents();
 }

@@ -13,7 +13,7 @@ public class PromotionServiceImpl implements promotionService {
     }
 
     @Override
-    public Optional<Promotion> fetchPromotionById(int id_promotion) {
+    public Promotion fetchPromotionById(long id_promotion) {
         return Optional.empty();
     }
 
@@ -23,7 +23,7 @@ public class PromotionServiceImpl implements promotionService {
     }
 
     @Override
-    public void updatePromotionPasswordById(String newPassword, String[] id_promotion) {
+    public void updatePromotionPasswordById(String newPassword, long id_promotion) {
 
     }
 

@@ -13,17 +13,17 @@ public class ManagerServiceImpl implements managerService {
     }
 
     @Override
-    public Optional<Manager> fetchManagerById(int id_manager) {
+    public Manager fetchManagerById(long id_manager) {
         return Optional.empty();
     }
 
     @Override
-    public void deleteManagerById(Manager id_manager) {
+    public void deleteManagerById(Manager manager) {
 
     }
 
     @Override
-    public void updateManagerPasswordById(String newPassword, String[] id_manager) {
+    public void updateManagerPasswordById(String newPassword, long id_manager) {
 
     }
 
