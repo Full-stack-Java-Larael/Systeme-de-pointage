@@ -1,17 +1,17 @@
 package JDBC101.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Promotion {
 
-    private int id_promotion;
+    private long id_promotion;
     private String name;
     private int year;
-    private String start_date;
-    private String end_date;
+    private java.sql.Date start_date;
+    private Date end_date;
     private Promotion promotion;
 
-    public Promotion( String name , int year , String start_date , String end_date) {
+    public Promotion( String name , int year , Date start_date , Date end_date) {
 
 
         this.name = name;
@@ -25,11 +25,11 @@ public class Promotion {
 
     }
 
-    public int getId_promotion() {
+    public long getId_promotion() {
         return id_promotion;
     }
 
-    public void setId_promotion(int id_promotion) {
+    public void setId_promotion(long id_promotion) {
         this.id_promotion = id_promotion;
     }
 
@@ -49,19 +49,19 @@ public class Promotion {
         this.year = year;
     }
 
-    public String getStart_date() {
+    public Date getStart_date() {
         return start_date;
     }
 
-    public void setStart_date(String start_date) {
+    public void setStart_date(Date start_date) {
         this.start_date = start_date;
     }
 
-    public String getEnd_date() {
+    public Date getEnd_date() {
         return end_date;
     }
 
-    public void setEnd_date(String end_date) {
+    public void setEnd_date(Date end_date) {
         this.end_date = end_date;
     }
 

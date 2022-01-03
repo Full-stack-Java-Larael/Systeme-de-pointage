@@ -50,7 +50,7 @@ public class managerDaoImp implements managerDao {
         ArrayList<Manager> managers = new ArrayList<Manager>();
         try(
             Connection connection = ConnectionFactory.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement(GET_ALL_MANAGERS, Statement.RETURN_GENERATED_KEYS)
+            PreparedStatement statement = connection.prepareStatement(GET_ALL_MANAGERS)
         ){
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){

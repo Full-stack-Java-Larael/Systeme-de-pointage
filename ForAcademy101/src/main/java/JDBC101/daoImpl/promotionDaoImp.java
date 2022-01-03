@@ -6,10 +6,7 @@ import JDBC101.handlingExceptions.DAOException;
 import JDBC101.model.Promotion;
 import JDBC101.model.Promotion;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +18,7 @@ public class promotionDaoImp implements promotionDao {
     private static final String SELECT_PROMOTION_BY_ID = "select * from promotion where id_promotion =?";
     private static final String SELECT_ALL_PROMOTIONS = "select * from promotion";
     private static final String DELETE_PROMOTION_SQL = "delete from promotion where id_promotion = ?;";
-    private static final String UPDATE_PROMOTION_SQL = "update promotion set name = ?,year= ?, start_date =? , end_date = ? where id = ?;";
+    private static final String UPDATE_PROMOTION_SQL = "update promotion set name = ?,year= ?, start_date =? , end_date = ? where id_promotion = ?;";
 
 
     @Override
@@ -32,15 +29,14 @@ public class promotionDaoImp implements promotionDao {
 
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PROMOTION_BY_ID);) {
             preparedStatement.setLong(1, id);
-            System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
 
 
             while (rs.next()) {
                 String name = rs.getString("name");
                 int year = rs.getInt("year");
-                String start_date = rs.getString("start_date");
-                String end_date = rs.getString("end_date");
+                Date start_date = rs.getDate("start_date");
+                Date end_date = rs.getDate("end_date");
                 promotion = new Promotion( name, year, start_date,end_date);
 
 
@@ -56,74 +52,73 @@ public class promotionDaoImp implements promotionDao {
     }
 
     @Override
-    public List<Promotion> getAllPromotion() throws DAOException  {
-
-
-        List <Promotion> promotionList = new ArrayList<Promotion>();
-
-        try (Connection connection = ConnectionFactory.getInstance().getConnection();
-
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PROMOTIONS);) {
-            System.out.println(preparedStatement);
-
+    public ArrayList<Promotion> getAllPromotion() throws DAOException  {
+        try (
+                Connection connection = ConnectionFactory.getInstance().getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PROMOTIONS)
+        ) {
+            ArrayList <Promotion> promotionList = new ArrayList<Promotion>();
             ResultSet rs = preparedStatement.executeQuery();
-
-
             while (rs.next()) {
-
                 Promotion promotion = new Promotion();
-
                 promotion.setId_promotion(rs.getInt("id_promotion"));
                 promotion.setName(rs.getString("name"));
                 promotion.setYear(rs.getInt("year"));
-                promotion.setStart_date(rs.getString("start_date"));
-                promotion.setEnd_date(rs.getString("end_date"));
-
+                promotion.setStart_date(rs.getDate("start_date"));
+                promotion.setEnd_date(rs.getDate("end_date"));
                 promotionList.add(promotion);
             }
+            return promotionList;
         } catch (SQLException e) {
-            //   printSQLException(e);
+             e.printStackTrace();
         }
-        return promotionList;
-
+        return null;
     }
 
     @Override
-    public void savePromotion(Promotion t) throws DAOException {
+    public Promotion savePromotion(Promotion promotion) throws DAOException {
 
-        try (Connection connection = ConnectionFactory.getInstance().getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PROMOTION_SQL)) {
-            preparedStatement.setString(1, t.getName());
-            preparedStatement.setInt(2,t.getYear() );
-            preparedStatement.setString(3,t.getStart_date() );
-            preparedStatement.setString(4, t.getEnd_date());
-            System.out.println(preparedStatement);
-            preparedStatement.executeUpdate();
+        try (
+                Connection connection = ConnectionFactory.getInstance().getConnection();
+                PreparedStatement statement = connection.prepareStatement(INSERT_PROMOTION_SQL,Statement.RETURN_GENERATED_KEYS)
+        ) {
+            statement.setString(1,promotion.getName());
+            statement.setInt(2,promotion.getYear() );
+            statement.setDate(3,promotion.getStart_date() );
+            statement.setDate(4,promotion.getEnd_date());
+            statement.executeUpdate();
+            ResultSet resultSet = statement.getGeneratedKeys();
+            while (resultSet.next()){
+                promotion.setId_promotion(resultSet.getLong(1));
+            }
+            return promotion;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-
+        return null;
     }
 
 
 
     @Override
-    public void updatePromotion(Promotion t) throws DAOException {
-        try (Connection connection = ConnectionFactory.getInstance().getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_PROMOTION_SQL);) {
-            statement.setString(1, t.getName());
-            statement.setInt(2, t.getYear());
-            statement.setString(3, t.getStart_date());
-            statement.setString(4, t.getEnd_date());
-            statement.setLong(5, t.getId_promotion());
-
-            statement.executeUpdate() ;
+    public Promotion updatePromotion(Promotion promotion) throws DAOException {
+        try (
+                Connection connection = ConnectionFactory.getInstance().getConnection();
+                PreparedStatement statement = connection.prepareStatement(UPDATE_PROMOTION_SQL)
+        ) {
+            statement.setString(1, promotion.getName());
+            statement.setInt(2, promotion.getYear());
+            statement.setDate(3, promotion.getStart_date());
+            statement.setDate(4, promotion.getEnd_date());
+            statement.setLong(5, promotion.getId_promotion());
+            if (statement.executeUpdate() != 0){
+                return promotion;
+            }
+            System.out.println("Promotion not found");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
-
+        return null;
     }
 
     @Override
