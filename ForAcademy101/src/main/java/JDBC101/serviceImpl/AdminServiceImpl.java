@@ -43,8 +43,6 @@ public class AdminServiceImpl implements adminService {
 
       admin.updateAdmin(adminUpdated);
 
-
-
     }
 
     @Override
