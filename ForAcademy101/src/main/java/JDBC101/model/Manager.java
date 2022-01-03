@@ -1,23 +1,23 @@
 package JDBC101.model;
 
+import java.sql.Date;
+
 public class Manager extends User {
 private Event event;
 private Teacher teacher;
 private Secretary secretary;
 
-    private String entry_date;
+    private Date entry_date;
 
-    public String getEntry_date() {
+    public Date getEntry_date() {
         return entry_date;
     }
 
-    public void setEntry_date(String entry_date) {
+    public void setEntry_date(Date entry_date) {
         this.entry_date = entry_date;
     }
 
-    public Manager(String entry_date) {
-        this.entry_date = entry_date;
-    }
+
     public Manager(){
 
     }

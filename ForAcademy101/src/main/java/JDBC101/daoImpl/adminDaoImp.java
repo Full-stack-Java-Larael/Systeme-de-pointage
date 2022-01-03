@@ -84,7 +84,7 @@ public class adminDaoImp implements adminDao{
             statement.setString(6,admin.getPhone());
             statement.setString(7,admin.getGender());
             statement.setString(8,admin.getPassword());
-            statement.setBoolean(9,admin.isStatus()); // is active
+            statement.setBoolean(9,admin.getStatus()); // is active
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();

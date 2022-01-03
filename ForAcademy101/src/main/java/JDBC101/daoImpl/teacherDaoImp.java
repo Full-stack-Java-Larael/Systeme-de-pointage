@@ -84,7 +84,7 @@ public class teacherDaoImp implements teacherDao {
             statement.setString(4,teacher.getGender());
             statement.setString(5,teacher.getPhone());
             statement.setString(6,teacher.getPassword());
-            statement.setBoolean(7,teacher.isStatus()); // is active
+            statement.setBoolean(7,teacher.getStatus()); // is active
             statement.setLong(8,teacher.getSpeciality().getId_speciality());
             boolean resultSet = statement.execute();
             new addressDaoImp().saveAddress(teacher.getAddress());
@@ -109,7 +109,7 @@ public class teacherDaoImp implements teacherDao {
             statement.setString(6,teacher.getPhone());
             statement.setString(7,teacher.getGender());
             statement.setString(8,teacher.getPassword());
-            statement.setBoolean(9,teacher.isStatus()); // is active
+            statement.setBoolean(9,teacher.getStatus()); // is active
             statement.setLong(10, teacher.getId_user());
             statement.execute();
         } catch (SQLException e) {

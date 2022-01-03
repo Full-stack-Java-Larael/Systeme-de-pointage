@@ -77,7 +77,7 @@ public class userDaoImp implements userDao{
             statement.setString(6,user.getPhone());
             statement.setString(7,user.getGender());
             statement.setString(8,user.getPassword());
-            statement.setBoolean(9,user.isStatus()); // is active
+            statement.setBoolean(9,user.getStatus()); // is active
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
