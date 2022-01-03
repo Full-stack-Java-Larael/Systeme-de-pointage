@@ -6,7 +6,6 @@ import JDBC101.model.Secretary;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class secretaryDaoImp implements secretaryDao {
 

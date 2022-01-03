@@ -5,7 +5,6 @@ import JDBC101.model.Secretary;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public interface secretaryDao {
     Secretary getSecretary(long id) throws DAOException;

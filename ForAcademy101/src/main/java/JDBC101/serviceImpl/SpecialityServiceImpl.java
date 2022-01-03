@@ -1,5 +1,6 @@
 package JDBC101.serviceImpl;
 
+import JDBC101.daoImpl.specialityDaoImp;
 import JDBC101.model.Speciality;
 import JDBC101.service.specialityService;
 
@@ -7,9 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class SpecialityServiceImpl implements specialityService {
+    private specialityDaoImp specialityDao = new specialityDaoImp();
     @Override
     public void addSpeciality(Speciality Speciality) {
-
+        specialityDao.saveSpeciality(Speciality);
     }
 
     @Override
@@ -19,6 +21,7 @@ public class SpecialityServiceImpl implements specialityService {
 
     @Override
     public void deleteSpecialityById(Speciality id_Speciality) {
+        specialityDao.deleteSpeciality(id_Speciality);
 
     }
 
@@ -26,6 +29,6 @@ public class SpecialityServiceImpl implements specialityService {
 
     @Override
     public List<Speciality> getAllSpecialities() {
-        return null;
+        return specialityDao.getAllSpeciality();
     }
 }

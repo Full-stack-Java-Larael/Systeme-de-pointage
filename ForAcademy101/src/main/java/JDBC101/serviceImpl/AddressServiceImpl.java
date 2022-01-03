@@ -1,5 +1,6 @@
 package JDBC101.serviceImpl;
 import JDBC101.model.Address;
+import JDBC101.model.Admin;
 import JDBC101.service.*;
 import JDBC101.daoImpl.*;
 
@@ -22,6 +23,8 @@ public class AddressServiceImpl implements addressService  {
     @Override
     public void deleteAddressById(Address address) {
 
+
+
         addressDao.deleteAddress(address);
 
     }
@@ -29,10 +32,9 @@ public class AddressServiceImpl implements addressService  {
     @Override
     public void updateAddress( Address address) {
 
-
-
-        addressDao.updateAddress(address);
+addressDao.deleteAddress(address);
     }
+
 
 
 
