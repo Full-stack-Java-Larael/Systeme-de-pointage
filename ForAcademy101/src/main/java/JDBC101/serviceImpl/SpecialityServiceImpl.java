@@ -22,10 +22,7 @@ public class SpecialityServiceImpl implements specialityService {
 
     }
 
-    @Override
-    public void updateSpecialityPasswordById(String newPassword, long id_Speciality) {
 
-    }
 
     @Override
     public List<Speciality> getAllSpecialities() {

@@ -23,10 +23,7 @@ public class EventServiceImpl implements eventService {
 
     }
 
-    @Override
-    public void updateEventPasswordById(String newPassword, long id_event) {
 
-    }
 
     @Override
     public List<Event> getAllEvents() {

@@ -8,6 +8,6 @@ public interface managerService {
      void addManager(Manager Manager);
     Manager fetchManagerById(long id_manager);
     void deleteManagerById(Manager manager);
-     void updateManagerPasswordById(String newPassword, long id_manager);
+
      List<Manager> getAllManagers();
 }

@@ -22,10 +22,7 @@ public class StudentServiceImpl implements studentService {
 
     }
 
-    @Override
-    public void updateStudentPasswordById(String newPassword, long id_student) {
 
-    }
 
     @Override
     public List<Student> getAllStudents() {

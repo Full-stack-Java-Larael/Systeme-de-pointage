@@ -22,10 +22,7 @@ public class TeacherServiceImpl implements teacherService {
 
     }
 
-    @Override
-    public void updateTeacherPasswordById(String newPassword, long id_teacher) {
 
-    }
 
     @Override
     public List<Teacher> getAllTeachers() {

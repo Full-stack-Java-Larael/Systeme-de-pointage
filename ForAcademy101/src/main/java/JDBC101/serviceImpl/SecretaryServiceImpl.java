@@ -22,10 +22,7 @@ public class SecretaryServiceImpl implements secretaryService {
 
     }
 
-    @Override
-    public void updateSecretaryPasswordById(String newPassword, long id_secretary) {
 
-    }
 
     @Override
     public List<Secretary> getAllSecretarys() {

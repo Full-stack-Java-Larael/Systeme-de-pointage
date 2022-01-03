@@ -26,10 +26,7 @@ public class UserServiceImpl implements userService {
         
     }
 
-    @Override
-    public void updateUserPasswordById(String newPassword, long id_user) {
 
-    }
 
     @Override
     public List<User> getAllUsers() {

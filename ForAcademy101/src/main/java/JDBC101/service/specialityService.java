@@ -8,6 +8,5 @@ public interface specialityService {
      void addSpeciality(Speciality Speciality);
      Speciality fetchSpecialityById(long id_Speciality);
      void deleteSpecialityById(Speciality id_Speciality);
-     void updateSpecialityPasswordById(String newPassword, long id_Speciality);
      List<Speciality> getAllSpecialities();
 }

@@ -22,10 +22,7 @@ public class ClassRoomServiceImpl implements classRoomService {
 
     }
 
-    @Override
-    public void updateClassRoomPasswordById(String newPassword, long id_classRoom) {
 
-    }
 
     @Override
     public List<ClassRoom> getAllClassRooms() {

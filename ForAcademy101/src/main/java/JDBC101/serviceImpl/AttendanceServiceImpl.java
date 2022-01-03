@@ -22,10 +22,7 @@ public class AttendanceServiceImpl implements attendanceService {
 
     }
 
-    @Override
-    public void updateAttendancePasswordById(String newPassword, long id_attendance) {
 
-    }
 
     @Override
     public List<Attendance> getAllAttendances() {

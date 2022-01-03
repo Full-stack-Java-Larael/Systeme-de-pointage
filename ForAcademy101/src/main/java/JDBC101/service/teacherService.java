@@ -8,7 +8,7 @@ public interface teacherService {
     public void addTeacher(Teacher Teacher);
     Teacher fetchTeacherById(long id_teacher);
      void deleteTeacherById(Teacher id_teacher);
-     void updateTeacherPasswordById(String newPassword, long id_teacher);
+
      List<Teacher> getAllTeachers();
 
 }

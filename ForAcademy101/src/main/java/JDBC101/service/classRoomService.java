@@ -9,6 +9,6 @@ public interface classRoomService {
      void addClassRoom(ClassRoom ClassRoom);
     ClassRoom fetchClassRoomById(long id_classRoom);
      void deleteClassRoomById(ClassRoom id_classRoom);
-     void updateClassRoomPasswordById(String newPassword, long id_classRoom);
+
      List<ClassRoom> getAllClassRooms();
 }

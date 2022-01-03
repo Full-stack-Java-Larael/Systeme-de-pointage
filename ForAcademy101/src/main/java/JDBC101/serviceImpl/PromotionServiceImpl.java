@@ -22,10 +22,7 @@ public class PromotionServiceImpl implements promotionService {
 
     }
 
-    @Override
-    public void updatePromotionPasswordById(String newPassword, long id_promotion) {
 
-    }
 
     @Override
     public List<Promotion> getAllPromotions() {

@@ -22,10 +22,7 @@ public class RoleServiceImpl implements roleService {
 
     }
 
-    @Override
-    public void updateRolePasswordById(String newPassword, long id_role) {
 
-    }
 
     @Override
     public List<Role> getAllRoles() {

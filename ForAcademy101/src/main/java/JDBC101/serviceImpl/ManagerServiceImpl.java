@@ -22,10 +22,7 @@ public class ManagerServiceImpl implements managerService {
 
     }
 
-    @Override
-    public void updateManagerPasswordById(String newPassword, long id_manager) {
 
-    }
 
     @Override
     public List<Manager> getAllManagers() {

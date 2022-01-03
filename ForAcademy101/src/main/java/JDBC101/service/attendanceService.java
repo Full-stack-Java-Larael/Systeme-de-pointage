@@ -9,6 +9,6 @@ public interface attendanceService {
      void addAttendance(Attendance Attendance);
      Attendance fetchAttendanceById(long id_attendance);
      void deleteAttendanceById(Attendance id_attendance);
-     void updateAttendancePasswordById(String newPassword, long id_attendance);
+
      List<Attendance> getAllAttendances();
 }
