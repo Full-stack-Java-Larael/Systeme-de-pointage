@@ -5,13 +5,12 @@ import JDBC101.handlingExceptions.DAOException;
 import JDBC101.model.Secretary;
 
 import java.util.List;
-import java.util.Optional;
 
 public class secretaryDaoImp implements secretaryDao {
 
     @Override
-    public Optional<Secretary> getSecretary(long id) throws DAOException {
-        return Optional.empty();
+    public Secretary getSecretary(long id) throws DAOException {
+        return null;
     }
 
     @Override

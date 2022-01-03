@@ -7,19 +7,20 @@ import java.util.List;
 import java.util.Optional;
 
 public class ManagerServiceImpl implements managerService {
+    private managerDaoImp managerDao = new managerDaoImp();
     @Override
     public void addManager(Manager Manager) {
-
+managerDao.saveManager(Manager);
     }
 
     @Override
     public Manager fetchManagerById(long id_manager) {
-        return null;
+        return managerDao.getManager(id_manager);
     }
 
     @Override
     public void deleteManagerById(Manager manager) {
-
+managerDao.deleteManager(manager);
     }
 
 
