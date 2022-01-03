@@ -13,8 +13,8 @@ public class ClassRoomServiceImpl implements classRoomService {
     }
 
     @Override
-    public Optional<ClassRoom> fetchClassRoomById(int id_classRoom) {
-        return Optional.empty();
+    public ClassRoom fetchClassRoomById(long id_classRoom) {
+        return null;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class ClassRoomServiceImpl implements classRoomService {
     }
 
     @Override
-    public void updateClassRoomPasswordById(String newPassword, String[] id_classRoom) {
+    public void updateClassRoomPasswordById(String newPassword, long id_classRoom) {
 
     }
 

@@ -4,7 +4,6 @@ import JDBC101.service.*;
 import JDBC101.daoImpl.*;
 
 import java.util.List;
-import java.util.Optional;
 
 public class AddressServiceImpl implements addressService  {
 
@@ -16,8 +15,8 @@ public class AddressServiceImpl implements addressService  {
     }
 
     @Override
-    public Optional<Address> fetchAddressById(int id_address) {
-        return Optional.empty();
+    public Address fetchAddressById(long id_address) {
+        return addressDao.getAddress(id_address);
     }
 
     @Override
@@ -26,7 +25,7 @@ public class AddressServiceImpl implements addressService  {
     }
 
     @Override
-    public void updateAddressPasswordById(String newPassword, String[] id_address) {
+    public void updateAddressPasswordById(String newPassword, long id_address) {
 
     }
 

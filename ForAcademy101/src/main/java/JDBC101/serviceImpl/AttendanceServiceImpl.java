@@ -13,8 +13,8 @@ public class AttendanceServiceImpl implements attendanceService {
     }
 
     @Override
-    public Optional<Attendance> fetchAttendanceById(int id_attendance) {
-        return Optional.empty();
+    public Attendance fetchAttendanceById(long id_attendance) {
+        return null;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class AttendanceServiceImpl implements attendanceService {
     }
 
     @Override
-    public void updateAttendancePasswordById(String newPassword, String[] id_attendance) {
+    public void updateAttendancePasswordById(String newPassword, long id_attendance) {
 
     }
 
