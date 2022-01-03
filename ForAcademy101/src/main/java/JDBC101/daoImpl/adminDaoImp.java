@@ -4,6 +4,7 @@ import JDBC101.JDBCfactory.ConnectionFactory;
 import JDBC101.dao.adminDao;
 import JDBC101.handlingExceptions.DAOException;
 import JDBC101.model.Admin;
+import JDBC101.model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -133,4 +134,6 @@ public class adminDaoImp implements adminDao{
         }
         return false;
     }
+
+
 }
