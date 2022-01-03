@@ -21,41 +21,32 @@ public class eventDaoImp implements eventDao {
 
     @Override
     public Event getEvent(long id) throws DAOException  {
-        Event Event = null;
-
-        try (Connection connection = ConnectionFactory.getInstance().getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_Event_BY_ID);) {
+        try (
+                Connection connection = ConnectionFactory.getInstance().getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_Event_BY_ID)
+        ) {
             preparedStatement.setLong(1, id);
-            System.out.println(preparedStatement);
-            ResultSet rs = preparedStatement.executeQuery();
-
-
-            while (rs.next()) {
-                int id_event = rs.getInt("id");
-                String name = rs.getString("name");
-                Date date = Date.valueOf(rs.getString("date"));
-                String description = rs.getString("description");
-                int status = rs.getInt("status");
-
-                Event = new Event(id_event, name, date, description, status);
-
-
+            ResultSet resultSet = preparedStatement.executeQuery();
+            Event event = new Event();
+            while (resultSet.next()) {
+                event.setId_event(resultSet.getLong("id_event"));
+                event.setName(resultSet.getString("name"));
+                event.setDate(resultSet.getDate("date"));
+                event.setDescription(resultSet.getString("description"));
+                event.setStatus(resultSet.getInt("status"));
             }
-
+            return event;
         } catch (DAOException | SQLException e) {
-            // printSQLException(e);
+            e.printStackTrace();
         }
-
-
-        return Event;
+        return null;
     }
 
     @Override
-    public List<Event> getAllEvent() throws DAOException  {
+    public ArrayList<Event> getAllEvent() throws DAOException  {
 
 
-        List < Event > Events = new ArrayList<Event  >();
+        ArrayList < Event > Events = new ArrayList<Event  >();
 
         try (Connection connection = ConnectionFactory.getInstance().getConnection();
 
@@ -82,50 +73,53 @@ public class eventDaoImp implements eventDao {
     }
 
     @Override
-    public void saveEvent(Event t) throws DAOException {
+    public Event saveEvent(Event event) throws DAOException {
 
-        try (Connection connection = ConnectionFactory.getInstance().getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_Event_SQL)) {
-            preparedStatement.setString(1,t.getName() );
-            preparedStatement.setDate(2,t.getDate() );
-            preparedStatement.setString(3,t.getDescription() );
-            preparedStatement.setInt(4,t.getStatus() );
-
-            System.out.println(preparedStatement);
-            preparedStatement.executeUpdate();
+        try (
+                Connection connection = ConnectionFactory.getInstance().getConnection();
+                PreparedStatement statement = connection.prepareStatement(INSERT_Event_SQL,Statement.RETURN_GENERATED_KEYS)
+        ) {
+            statement.setString(1, event.getName() );
+            statement.setDate(2, event.getDate() );
+            statement.setString(3, event.getDescription() );
+            statement.setInt(4, event.getStatus() );
+            statement.executeUpdate();
+            ResultSet resultSet = statement.getGeneratedKeys();
+            while (resultSet.next()){
+                event.setId_event(resultSet.getInt(1));
+            }
+            return event;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-
+        return null;
     }
 
 
 
     @Override
-    public void updateEvent(Event t, String[] params) throws DAOException {
+    public Event updateEvent(Event event) throws DAOException {
         try (Connection connection = ConnectionFactory.getInstance().getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_Event_SQL);) {
-            statement.setString(1, t.getName());
-            statement.setDate(2, t.getDate());
-            statement.setString(3, t.getDescription());
-            statement.setInt(4, t.getStatus());
+            statement.setString(1, event.getName());
+            statement.setDate(2, event.getDate());
+            statement.setString(3, event.getDescription());
+            statement.setInt(4, event.getStatus());
 
             statement.executeUpdate() ;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
-
+        return null;
     }
 
     @Override
-    public boolean deleteEvent(Event t) throws DAOException {
+    public boolean deleteEvent(long id) throws DAOException {
 
         boolean rowDeleted = false;
 
         try (Connection connection = ConnectionFactory.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_Event_SQL);) {
-            statement.setLong(1, t.getId_event());
+            statement.setLong(1, id);
             if(statement.executeUpdate() > 0){
                 rowDeleted = true;
             };

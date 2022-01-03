@@ -5,7 +5,7 @@ import java.sql.Time;
 
 public class Event {
 
-    private int id_event;
+    private long id_event;
     private String name;
     private Date date;
     private String description;
@@ -27,11 +27,11 @@ public class Event {
     public Event(int id, String name, Time date, String description, int status) {
     }
 
-    public int getId_event() {
+    public long getId_event() {
         return id_event;
     }
 
-    public void setId_event(int id_event) {
+    public void setId_event(long id_event) {
         this.id_event = id_event;
     }
 
@@ -47,8 +47,8 @@ public class Event {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = Date.valueOf(date);
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getDescription() {

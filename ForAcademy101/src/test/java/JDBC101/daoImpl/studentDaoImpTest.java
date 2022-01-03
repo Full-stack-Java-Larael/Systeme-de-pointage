@@ -32,7 +32,7 @@ class studentDaoImpTest {
     @Test
     @Order(1)
     void saveStudent() {
-        // Admin
+        // Student
         Student student = new Student();
         student.setEmail("email@foracademy.com");
         student.setFirst_name("first name");

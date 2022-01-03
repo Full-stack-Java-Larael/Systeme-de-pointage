@@ -4,33 +4,34 @@ import JDBC101.dao.secretaryDao;
 import JDBC101.handlingExceptions.DAOException;
 import JDBC101.model.Secretary;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class secretaryDaoImp implements secretaryDao {
 
     @Override
-    public Optional<Secretary> getSecretary(long id) throws DAOException {
-        return Optional.empty();
-    }
-
-    @Override
-    public List<Secretary> getAllSecretary() throws DAOException {
+    public Secretary getSecretary(long id) throws DAOException {
         return null;
     }
 
     @Override
-    public void saveSecretary(Secretary t) throws DAOException {
-
+    public ArrayList<Secretary> getAllSecretary() throws DAOException {
+        return null;
     }
 
     @Override
-    public void updateSecretary(Secretary t, String[] params) throws DAOException {
-
+    public Secretary saveSecretary(Secretary secretary) throws DAOException {
+        return null;
     }
 
     @Override
-    public void deleteSecretary(Secretary t) throws DAOException {
+    public Secretary updateSecretary(Secretary secretary) throws DAOException {
+        return null;
+    }
 
+    @Override
+    public boolean deleteSecretary(long id) throws DAOException {
+        return false;
     }
 }

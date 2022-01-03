@@ -1,6 +1,6 @@
 package JDBC101.model;
 
-public class Secretary {
+public class Secretary extends User{
 
     private Event event;
     private Class classRoom;
@@ -11,6 +11,9 @@ public class Secretary {
 
     public Secretary(String entry_date) {
         this.entry_date = entry_date;
+    }
+    public Secretary(){
+
     }
 
     public String getEntry_date() {
