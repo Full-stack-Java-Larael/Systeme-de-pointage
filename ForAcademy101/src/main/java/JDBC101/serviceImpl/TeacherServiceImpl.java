@@ -21,7 +21,7 @@ teacherDao.saveTeacher(Teacher);
 
     @Override
     public void deleteTeacherById(Teacher id_teacher) {
-        teacherDao.deleteTeacher(id_teacher);
+        teacherDao.deleteTeacher(id_teacher.getId_user());
 
     }
 

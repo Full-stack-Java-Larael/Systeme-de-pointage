@@ -21,7 +21,7 @@ eventDao.saveEvent(Event);
 
     @Override
     public void deleteEventById(Event event) {
-eventDao.deleteEvent(event);
+        eventDao.deleteEvent(event.getId_event());
     }
 
 

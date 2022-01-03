@@ -21,7 +21,7 @@ public class SecretaryServiceImpl implements secretaryService {
 
     @Override
     public void deleteSecretaryById(Secretary secretary) {
-secretaryDao.deleteSecretary(secretary);
+        secretaryDao.deleteSecretary(secretary.getId_user());
     }
 
 
