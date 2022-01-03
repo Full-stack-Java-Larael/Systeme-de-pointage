@@ -1,12 +1,15 @@
 package JDBC101.model;
 
-public class Student {
+public class Student extends User{
     private Event event;
 
     private Promotion promotion = new Promotion();
 
     public Student(Promotion promotion) {
         this.promotion = promotion;
+    }
+    public Student(){
+
     }
 
     public Promotion getPromotion() {

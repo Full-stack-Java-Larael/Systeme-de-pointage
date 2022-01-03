@@ -25,14 +25,15 @@ public class classRoomDaoImp implements classRoomDao {
         ) {
             statement.setLong(1,id);
             ResultSet resultSet = statement.executeQuery();
+            ClassRoom classRoom = new ClassRoom();
             while (resultSet.next()) {
-                return new ClassRoom(resultSet.getInt("id_classroom"),
-                        resultSet.getString("name"),
-                        resultSet.getString("day_start_hour"),
-                        resultSet.getString("day_end_hour"),
-                        new Speciality(resultSet.getInt("id_speciality"))
-                );
+                classRoom.setId_class_room(resultSet.getInt("id_classroom"));
+                classRoom.setName(resultSet.getString("name"));
+                classRoom.setSpecialty(new specialityDaoImp().getSpeciality(resultSet.getInt("id_speciality")));
+                classRoom.setDay_end_hour(resultSet.getString("day_end_hour"));
+                classRoom.setDay_start_hour(resultSet.getString("day_start_hour"));
             }
+            return classRoom;
         }catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Unable to get Classroom");
@@ -54,8 +55,7 @@ public class classRoomDaoImp implements classRoomDao {
               classRoom.setName(resultSet.getString("name"));
               classRoom.setDay_start_hour(resultSet.getString("day_start_hour"));
               classRoom.setDay_end_hour(resultSet.getString("day_end_hour"));
-              Speciality speciality = new Speciality();
-              classRoom.setSpecialty(new specialityDaoImp().getSpeciality(speciality));
+              classRoom.setSpecialty(new specialityDaoImp().getSpeciality(resultSet.getLong("id_speciality")));
               classRooms.add(classRoom);
           }
           return classRooms;

@@ -15,7 +15,7 @@ class specialityDaoImpTest {
         specialityDaoImp specialityDaoImp = new specialityDaoImp();
         Speciality speciality = new Speciality();
         speciality.setId_speciality(6);
-        assertInstanceOf(Speciality.class,specialityDaoImp.getSpeciality(speciality));
+        assertInstanceOf(Speciality.class,specialityDaoImp.getSpeciality(1));
     }
 
     @Test

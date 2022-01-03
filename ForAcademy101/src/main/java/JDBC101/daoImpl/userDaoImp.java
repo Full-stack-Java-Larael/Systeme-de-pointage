@@ -25,7 +25,6 @@ public class userDaoImp implements userDao{
             ResultSet resultSet = statement.executeQuery();
 
             User user = new User();
-
             while(resultSet.next()){
                 user.setId_user(resultSet.getLong("id_user"));
                 user.setFirst_name(resultSet.getString("first_name"));
@@ -35,17 +34,17 @@ public class userDaoImp implements userDao{
             return user;
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
         }
+        return null;
     }
 
     @Override
-    public List<User> getAllUser() throws DAOException {
+    public ArrayList<User> getAllUser() throws DAOException {
         try(Connection connection = ConnectionFactory.getInstance().getConnection();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users");) {
 
             ResultSet resultSet = statement.executeQuery();
-            List<User> usersList = new ArrayList<User>();
+            ArrayList<User> usersList = new ArrayList<User>();
             while(resultSet.next()){
                 User user = new User();
                 user.setId_user(resultSet.getLong("id_user"));
@@ -61,7 +60,7 @@ public class userDaoImp implements userDao{
         }
     }
 
-    public static void saveUser(User user) throws DAOException {
+    public User saveUser(User user) throws DAOException {
 
         try(    Connection connection =   ConnectionFactory.getInstance().getConnection();
                 PreparedStatement statement = connection.prepareStatement
@@ -82,11 +81,12 @@ public class userDaoImp implements userDao{
             e.printStackTrace();
             System.out.println("unable to save the product");
         }
-        }
+        return null;
+    }
 
 
     @Override
-    public void updateUser(User user) throws DAOException{
+    public User updateUser(User user) throws DAOException{
         try(  Connection connection =   ConnectionFactory.getInstance().getConnection();
               PreparedStatement statement = connection.prepareStatement
                       ("UPDATE users  first_name = ?, last_name = ?,address_id = ?,phone = ?,email = ?,password = ?,role = ) WHERE id_user = ?");) {
@@ -99,24 +99,28 @@ public class userDaoImp implements userDao{
             statement.setString(6, user.getPassword());
             statement.setLong(7, user.getId_user());
             statement.execute();
+            return user;
         }catch (SQLException e){
             e.printStackTrace();
             System.out.println("Unable to update user!");
         }
+        return null;
     }
 
     @Override
-    public void deleteUser(User user) throws DAOException{
+    public boolean deleteUser(User user) throws DAOException{
         try(   Connection connection =   ConnectionFactory.getInstance().getConnection();
                PreparedStatement statement = connection.prepareStatement
                        ("DELETE FROM users WHERE id_user = ?");) {
 
             statement.setLong(1, user.getId_user());
             statement.execute();
+            return true;
         }catch (SQLException e){
             e.printStackTrace();
             System.out.println("Unable to delete user!");
         }
+        return false;
     }
 }
 

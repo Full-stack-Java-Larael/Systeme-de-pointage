@@ -42,12 +42,8 @@ class managerDaoImpTest {
         manager.setPassword("pass1234");
         manager.setEntry_date(new Date(2022,01,01));
         manager.setStatus(true);
-        Role role = new Role();
-        role.setId_role(1);
-        manager.setRole(role);
-        Address address = new Address();
-        address.setId_address(1);
-        manager.setAddress(address);
+        manager.setRole(new roleDaoImp().getAllRole().get(0));
+        manager.setAddress(new addressDaoImp().getAllAddress().get(0));
         Manager newManager = managerDaoImp.saveManager(manager);
         id = newManager.getId_user();
         assertInstanceOf(Manager.class,newManager);
@@ -67,12 +63,8 @@ class managerDaoImpTest {
         manager.setPassword("pass@1234");
         manager.setEntry_date(new Date(2022,05,30));
         manager.setStatus(false);
-        Role role = new Role();
-        role.setId_role(2);
-        manager.setRole(role);
-        Address address = new Address();
-        address.setId_address(2);
-        manager.setAddress(address);
+        manager.setRole(new roleDaoImp().getAllRole().get(0));
+        manager.setAddress(new addressDaoImp().getAllAddress().get(0));
         assertInstanceOf(Manager.class,managerDaoImp.updateManager(manager));
     }
 

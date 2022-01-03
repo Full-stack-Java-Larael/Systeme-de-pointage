@@ -3,17 +3,18 @@ package JDBC101.dao;
 import JDBC101.handlingExceptions.DAOException;
 import JDBC101.model.Student;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public interface studentDao {
-    Optional<Student> getStudent(long id) throws DAOException;
+    Student getStudent(long id) throws DAOException;
 
-    List<Student> getAllStudent() throws DAOException;
+    ArrayList<Student> getAllStudent() throws DAOException;
 
-    void saveStudent(Student t) throws DAOException;
+    Student saveStudent(Student t) throws DAOException;
 
-    void updateStudent(Student t, String[] params) throws DAOException;
+    Student updateStudent(Student student) throws DAOException;
 
-    void deleteStudent(Student t) throws DAOException;
+    boolean deleteStudent(long id) throws DAOException;
 }

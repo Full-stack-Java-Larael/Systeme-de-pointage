@@ -20,14 +20,16 @@ public class specialityDaoImp implements specialityDao {
 
 
     @Override
-    public Speciality getSpeciality(Speciality speciality) throws DAOException  {
+    public Speciality getSpeciality(long id) throws DAOException  {
         try (
             Connection connection = ConnectionFactory.getInstance().getConnection();
             PreparedStatement statement = connection.prepareStatement(SELECT_Speciality_BY_ID);
         ) {
-            statement.setLong(1, speciality.getId_speciality());
+            statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
+            Speciality speciality = new Speciality();
             while (resultSet.next()) {
+                speciality.setId_speciality(resultSet.getLong("id_speciality"));
                 speciality.setName(resultSet.getString("name"));
             }
             return speciality;
@@ -88,7 +90,7 @@ public class specialityDaoImp implements specialityDao {
                 PreparedStatement statement = connection.prepareStatement(UPDATE_Speciality_SQL);
             ){
                 statement.setString(1,speciality.getName());
-                statement.setInt(2,speciality.getId_speciality());
+                statement.setLong(2,speciality.getId_speciality());
                 statement.executeUpdate() ;
                 return speciality;
         } catch (SQLException e) {
