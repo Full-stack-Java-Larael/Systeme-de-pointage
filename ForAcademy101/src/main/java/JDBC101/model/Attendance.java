@@ -25,7 +25,7 @@ public class Attendance {
         return id_attendance;
     }
 
-    public void setId_attendance(int id_attendance) {
+    public void setId_attendance(long id_attendance) {
         this.id_attendance = id_attendance;
     }
 

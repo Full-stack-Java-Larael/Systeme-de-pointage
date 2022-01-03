@@ -1,12 +1,10 @@
 package JDBC101.serviceImpl;
 
-import JDBC101.daoImpl.addressDaoImp;
 import JDBC101.daoImpl.userDaoImp;
 import JDBC101.model.User;
 import JDBC101.service.userService;
 
 import java.util.List;
-import java.util.Optional;
 
 public class UserServiceImpl implements userService {
     
@@ -15,8 +13,9 @@ public class UserServiceImpl implements userService {
 
     @Override
     public void addUser(User user) {
-        JDBC101.daoImpl.userDaoImp.saveUser(user);
 
+        userDaoImp = new userDaoImp();
+        userDaoImp.saveUser(user);
     }
 
     @Override

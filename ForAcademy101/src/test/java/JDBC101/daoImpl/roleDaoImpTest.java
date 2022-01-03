@@ -36,6 +36,7 @@ class roleDaoImpTest {
         Role newRole = roleDaoImp.saveRole(role);
         assertInstanceOf(Role.class,newRole);
         id = newRole.getId_role();
+        roleDaoImp.saveRole(role);
     }
 
     @Test

@@ -2,7 +2,7 @@ package JDBC101.model;
 
 public class Speciality {
 
-    private int id_speciality;
+    private long id_speciality;
     private String name;
     private Speciality speciality;
 
@@ -19,11 +19,11 @@ public class Speciality {
 
     }
 
-    public int getId_speciality() {
+    public long getId_speciality() {
         return id_speciality;
     }
 
-    public void setId_speciality(int id_speciality) {
+    public void setId_speciality(long id_speciality) {
         this.id_speciality = id_speciality;
     }
 

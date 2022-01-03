@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface specialityDao {
-    Speciality getSpeciality(Speciality speciality) throws DAOException;
+    Speciality getSpeciality(long id) throws DAOException;
 
     ArrayList<Speciality> getAllSpeciality() throws DAOException;
 

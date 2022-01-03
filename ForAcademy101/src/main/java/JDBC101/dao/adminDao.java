@@ -11,7 +11,7 @@ public interface adminDao {
 
     List<Admin> getAllAdmin() throws DAOException;
 
-    void saveAdmin(Admin t) throws DAOException;
+    Admin saveAdmin(Admin admin) throws DAOException;
 
     Admin updateAdmin(Admin admin) throws DAOException;
 

@@ -5,10 +5,7 @@ import JDBC101.dao.adminDao;
 import JDBC101.handlingExceptions.DAOException;
 import JDBC101.model.Admin;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -70,11 +67,11 @@ public class adminDaoImp implements adminDao{
         }
     }
 
-    public void saveAdmin(Admin admin) throws DAOException {
+    public Admin saveAdmin(Admin admin) throws DAOException {
 
         try (
                 Connection connection =   ConnectionFactory.getInstance().getConnection();
-                PreparedStatement statement = connection.prepareStatement(SAVE_ADMIN);
+                PreparedStatement statement = connection.prepareStatement(SAVE_ADMIN, Statement.RETURN_GENERATED_KEYS);
              ){
             statement.setString(1, admin.getEmail());
             statement.setString(2, admin.getFirst_name());
@@ -86,10 +83,15 @@ public class adminDaoImp implements adminDao{
             statement.setString(8,admin.getPassword());
             statement.setBoolean(9,admin.getStatus()); // is active
             statement.execute();
+            ResultSet resultSet = statement.getGeneratedKeys();
+            while (resultSet.next()){
+                admin.setId_user(resultSet.getLong(1));
+            }
+            return admin;
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("unable to save the admin");
         }
+        return null;
     }
 
 
