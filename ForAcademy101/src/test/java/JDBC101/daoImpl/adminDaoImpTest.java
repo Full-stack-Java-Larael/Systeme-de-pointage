@@ -56,7 +56,6 @@ class adminDaoImpTest {
     @Test
     @Order(4)
     void updateAdmin() {
-
         // Admin
         Admin admin = new Admin();
         admin.setId_user(id);
@@ -70,8 +69,7 @@ class adminDaoImpTest {
         admin.setAddress(new addressDaoImp().getAllAddress().get(0));
         admin.setRole(new roleDaoImp().getAllRole().get(0));
         adminDaoImp adminDaoImp = new adminDaoImp();
-        adminDaoImp.updateAdmin(admin);
-
+        assertInstanceOf(Admin.class,adminDaoImp.updateAdmin(admin));
     }
 
     @Test
