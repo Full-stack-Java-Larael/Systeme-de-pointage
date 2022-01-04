@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="616.0" style="-fx-background-color: #130f40;" fx:controller="com.foracademy.foracademy101fx.loginController" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Group layoutX="93.0" layoutY="149.0">
+         <children>
+            <TextField id="email" fx:id="email" layoutY="17.0" prefHeight="25.0" prefWidth="428.0" />
+            <Label text="Addresse e-mail:" textFill="WHITE" />
+         </children>
+      </Group>
+      <Group layoutX="93.0" layoutY="210.0">
+         <children>
+            <TextField id="password" fx:id="password" layoutY="17.0" prefHeight="25.0" prefWidth="428.0" />
+            <Label text="Mot de pass:" textFill="WHITE" />
+         </children>
+      </Group>
+      <Button onAction="#onLoginButtonClick" layoutX="93.0" layoutY="281.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="428.0" style="-fx-background-color: #e056fd; -fx-font-family: tajawal;" text="Connection" />
+      <Label layoutX="149.0" layoutY="37.0" text="ForAcademy101" textFill="WHITE">
+         <font>
+            <Font name="Tajawal Black" size="45.0" />
+         </font>
+      </Label>
+      <Label layoutX="404.0" layoutY="81.0" text="Connection" textFill="#ffffff9b" />
+   </children>
+</Pane>
