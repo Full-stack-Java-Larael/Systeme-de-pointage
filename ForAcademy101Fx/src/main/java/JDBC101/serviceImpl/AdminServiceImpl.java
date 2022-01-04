@@ -56,9 +56,10 @@ public class AdminServiceImpl implements adminService {
     }
 
     @Override
-    public boolean Login(String Email, String Password) {
-       Admin adminLogged = admin.getByEmail(Email);
-       return true;
+    public int Login(String Email, String Password) {
+        Admin admin = new adminDaoImp().getByEmail(Email);
+        if(admin.getEmail() == null){return 0;}
+        return  (admin.getPassword().equals(Password)) ? 1 : 2;
     }
 
     public boolean disableUser(User user){

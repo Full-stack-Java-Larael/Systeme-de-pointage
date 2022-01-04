@@ -81,7 +81,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.foracademy.foracademy101fx/com.foracademy.foracademy101fx.HelloApplication
+                            <mainClass>com.foracademy.foracademy101fx/com.foracademy.foracademy101fx.Main
                             </mainClass>
                         </configuration>
                     </execution>

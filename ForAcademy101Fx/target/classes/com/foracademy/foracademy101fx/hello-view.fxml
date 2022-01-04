@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.foracademy.foracademy101fx.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<Pane fx:controller="com.foracademy.foracademy101fx.HelloController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #130f40;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="tableView" layoutX="15.0" layoutY="49.0" prefHeight="320.0" prefWidth="566.0" style="-fx-background-color: #dff9fb;">
+        <columns>
+            <TableColumn prefWidth="66.19997882843018" style="-fx-background-color: #c7ecee;" text="Nom" />
+            <TableColumn prefWidth="84.20001220703125" style="-fx-background-color: #c7ecee;" text="Prénom" />
+            <TableColumn prefWidth="101.80000305175781" style="-fx-background-color: #c7ecee;" text="Adresse e-mail" />
+            <TableColumn prefWidth="62.5999755859375" style="-fx-background-color: #c7ecee;" text="Genre" />
+            <TableColumn prefWidth="103.60003662109375" style="-fx-background-color: #c7ecee;" text="Adresse" />
+            <TableColumn prefWidth="71.5999755859375" style="-fx-background-color: #c7ecee;" text="Téléphone" />
+            <TableColumn prefWidth="77.4000244140625" style="-fx-background-color: #c7ecee;" text="Status" />
+        </columns>
+      </TableView>
+      <Label layoutX="15.0" layoutY="14.0" prefHeight="25.0" prefWidth="566.0" text="Liste de utilisateurs" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

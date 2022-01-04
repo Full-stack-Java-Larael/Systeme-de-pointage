@@ -14,5 +14,5 @@ public interface adminService {
     void updateAdminPasswordById(String newPassword, long id_admin);
 
      List<Admin> getAllAdmins();
-     boolean Login(String Email, String Password);
+     int Login(String Email, String Password);
 }

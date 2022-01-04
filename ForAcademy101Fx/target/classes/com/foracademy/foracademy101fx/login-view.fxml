@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="616.0" style="-fx-background-color: #130f40;" fx:controller="com.foracademy.foracademy101fx.loginController" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<Pane accessibleRole="PASSWORD_FIELD" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="616.0" style="-fx-background-color: #130f40;" xmlns="http://javafx.com/javafx/11.0.2"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foracademy.foracademy101fx.loginController">
    <children>
       <Group layoutX="93.0" layoutY="149.0">
          <children>
@@ -15,16 +15,18 @@
       </Group>
       <Group layoutX="93.0" layoutY="210.0">
          <children>
-            <TextField id="password" fx:id="password" layoutY="17.0" prefHeight="25.0" prefWidth="428.0" />
             <Label text="Mot de pass:" textFill="WHITE" />
+            <PasswordField id="password" fx:id="password" layoutY="19.0" prefHeight="25.0" prefWidth="426.0" />
          </children>
       </Group>
-      <Button onAction="#onLoginButtonClick" layoutX="93.0" layoutY="281.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="428.0" style="-fx-background-color: #e056fd; -fx-font-family: tajawal;" text="Connection" />
+      <Button layoutX="93.0" layoutY="281.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="25.0" prefWidth="428.0" style="-fx-background-color: #e056fd; -fx-font-family: tajawal;" text="Connection" />
       <Label layoutX="149.0" layoutY="37.0" text="ForAcademy101" textFill="WHITE">
          <font>
             <Font name="Tajawal Black" size="45.0" />
          </font>
       </Label>
       <Label layoutX="404.0" layoutY="81.0" text="Connection" textFill="#ffffff9b" />
+      <Label id="Ealert" fx:id="Ealert" layoutX="94.0" layoutY="191.0" prefHeight="17.0" prefWidth="428.0" textFill="RED" />
+      <Label id="Palert" fx:id="Palert" layoutX="94.0" layoutY="254.0" prefHeight="17.0" prefWidth="428.0" textFill="RED" />
    </children>
 </Pane>
