@@ -16,4 +16,6 @@ public interface adminDao {
     Admin updateAdmin(Admin admin) throws DAOException;
 
     boolean deleteAdmin(Admin admin) throws DAOException;
+
+    Admin getByEmail(String Email) throws DAOException;
 }

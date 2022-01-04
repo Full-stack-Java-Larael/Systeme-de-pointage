@@ -55,6 +55,12 @@ public class AdminServiceImpl implements adminService {
         return admin.getAllAdmin();
     }
 
+    @Override
+    public boolean Login(String Email, String Password) {
+       Admin adminLogged = admin.getByEmail(Email);
+       return true;
+    }
+
     public boolean disableUser(User user){
         User userDisabled = userDao.getUser(user.getId_user());
 

@@ -17,6 +17,7 @@ public class adminDaoImp implements adminDao{
     private final String GET_ADMINS = "SELECT * FROM admin";
     private final String UPDATE_ADMIN = "UPDATE admin SET first_name = ?, last_name = ?,phone = ?,email = ?,password = ?, id_address = ?, id_role = ? WHERE id_user = ?";
     private final String DELETE_ADMIN = "DELETE FROM admin WHERE id_user = ?";
+    private final String GET_ADMIN_BY_Email = "select * from admin where email = ?";
     @Override
     public Admin getAdmin(long id_user) throws DAOException {
         try (
@@ -139,6 +140,34 @@ public class adminDaoImp implements adminDao{
             System.out.println("Unable to delete Admin!");
         }
         return false;
+    }
+
+    @Override
+    public Admin getByEmail(String Email) throws DAOException {
+        try (
+                Connection connection =   ConnectionFactory.getInstance().getConnection();
+                PreparedStatement statement = connection.prepareStatement(GET_ADMIN_BY_Email);
+        ){
+            statement.setString(1,Email);
+            ResultSet resultSet = statement.executeQuery();
+            Admin admin = new Admin();
+            while(resultSet.next()){
+                admin.setId_user(resultSet.getLong("id_user"));
+                admin.setFirst_name(resultSet.getString("first_name"));
+                admin.setLast_name(resultSet.getString("last_name"));
+                admin.setEmail(resultSet.getString("email"));
+                admin.setPassword(resultSet.getString("password"));
+                admin.setStatus(resultSet.getBoolean("status"));
+                admin.setGender(resultSet.getString("gender"));
+                admin.setPhone(resultSet.getString("phone"));
+                admin.setRole(new roleDaoImp().getRole(resultSet.getLong("id_role")));
+                admin.setAddress(new addressDaoImp().getAddress(resultSet.getLong("id_address")));
+            }
+            return admin;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 
