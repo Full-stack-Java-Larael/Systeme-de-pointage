@@ -31,6 +31,12 @@ public class adminDaoImp implements adminDao{
                 admin.setFirst_name(resultSet.getString("first_name"));
                 admin.setLast_name(resultSet.getString("last_name"));
                 admin.setEmail(resultSet.getString("email"));
+                admin.setPassword(resultSet.getString("password"));
+                admin.setStatus(resultSet.getBoolean("status"));
+                admin.setGender(resultSet.getString("gender"));
+                admin.setPhone(resultSet.getString("phone"));
+                admin.setRole(new roleDaoImp().getRole(resultSet.getLong("id_role")));
+                admin.setAddress(new addressDaoImp().getAddress(resultSet.getLong("id_address")));
             }
             return admin;
         } catch (SQLException e) {
@@ -54,11 +60,11 @@ public class adminDaoImp implements adminDao{
                 admin.setLast_name(resultSet.getString("last_name"));
                 admin.setEmail(resultSet.getString("email"));
                 admin.setPassword(resultSet.getString("password"));
-           //     admin.setStatus(resultSet.getBoolean("status"));
-           //     admin.setGender(resultSet.getString("gender"));
+                admin.setStatus(resultSet.getBoolean("status"));
+                admin.setGender(resultSet.getString("gender"));
                 admin.setPhone(resultSet.getString("phone"));
-            //    admin.setRole(new roleDaoImp().getRole(resultSet.getLong("id_role")));
-           //     admin.setAddress(new addressDaoImp().getAddress(resultSet.getLong("id_address")));
+                admin.setRole(new roleDaoImp().getRole(resultSet.getLong("id_role")));
+                admin.setAddress(new addressDaoImp().getAddress(resultSet.getLong("id_address")));
                 AdminsList.add(admin);
             }
             return  AdminsList;
