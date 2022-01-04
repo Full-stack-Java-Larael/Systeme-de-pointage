@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane fx:controller="com.foracademy.foracademy101fx.HelloController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #130f40;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #130f40;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foracademy.foracademy101fx.HelloController">
    <children>
       <TableView fx:id="tableView" layoutX="15.0" layoutY="49.0" prefHeight="320.0" prefWidth="566.0" style="-fx-background-color: #dff9fb;">
         <columns>
@@ -22,5 +22,6 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
+      <Button layoutX="518.0" layoutY="14.0" mnemonicParsing="false" onAction="#getData" style="-fx-background-color: white;" text="Get Data" />
    </children>
 </Pane>

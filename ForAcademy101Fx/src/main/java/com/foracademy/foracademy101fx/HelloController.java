@@ -6,8 +6,11 @@ import JDBC101.model.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 
+import java.io.IOException;
+
 public class HelloController {
-//    public TableView<User> tableView = new TableView<User>();
+
+    public TableView tableView;
 
     public HelloController(){
 //        UserServiceImpl userService = new UserServiceImpl();
@@ -16,6 +19,11 @@ public class HelloController {
 //        System.out.println(tableView.getItems());
 //        tableView.getItems().addAll(adminService.getAllAdmins());
 //        System.out.println(tableView.getItems());
+    }
+    @FXML
+    public void getData() throws IOException {
+        System.out.println("test");
+        System.out.println(tableView.getItems());
     }
 
 }
